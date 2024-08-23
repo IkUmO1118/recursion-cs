@@ -1,0 +1,7 @@
+Hello, this is a test file.
+This file is used to demonstrate the file transfer between client and server.
+The file contains a few lines of text for testing purposes.
+
+Line 1: The quick brown fox jumps over the lazy dog.
+Line 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Line 3: 1234567890!@#$%^&*()_+-=~`[]{}|;:'",.<>?/ Hello, this is a test file.
