@@ -24,16 +24,18 @@ def receive_message(sock, stop_event):
 def main():
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     server_address = '127.0.0.1'
-    server_port = 9005
+    server_port = 9000
 
     client_address = '127.0.0.1'
-    client_port = 9003
+    client_port = 9002
 
     while True:
+        
         username = input('--> Type in your name: ').strip()
         username_bytes = username.encode('utf-8')
         username_len = len(username_bytes).to_bytes(1, 'big')
 
+        # 
         if len(username_bytes) <= 255:
             break
         else:
