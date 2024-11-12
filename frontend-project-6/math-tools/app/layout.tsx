@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Command line echo',
-  description: 'Recursion frontend_project | command line echo',
+  title: 'Math tools',
+  description: 'Recursion frontend_project | math tools',
 };
 
 function RootLayout({
