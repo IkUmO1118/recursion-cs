@@ -13,7 +13,10 @@ class Invoice {
     $this->estimatedTimeInMinutes = $estimatedTimeInMinutes;
   }
 
-  public function printInvoice(): string {
-    return "";
+  public function printInvoice() {
+    echo "------------------------------" . PHP_EOL;
+    echo "Date: {$this->orderTime}" . PHP_EOL;
+    echo "Final Price: $" . $this->finalPrice . PHP_EOL;
+    echo "------------------------------" . PHP_EOL;
   }
 }

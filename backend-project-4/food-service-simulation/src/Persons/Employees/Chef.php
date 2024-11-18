@@ -18,5 +18,8 @@ class Chef extends Employee {
       $item = $items[$i];
       echo "{$this->name} was cooking " . $item->getCategory() . PHP_EOL;
     }
+
+    $estimatedTime = 7;
+    echo "{$this->name} took {$estimatedTime} minutes to cook". PHP_EOL;
   }
 }

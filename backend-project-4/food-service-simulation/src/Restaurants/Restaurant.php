@@ -66,7 +66,8 @@ class Restaurant {
     // )
     $order = $this->callCasher()->generateOrder($categories, $this->menuMap);
     $this->callChef()->prerareFood($order);
-    return new Invoice(29.99, 20241118, 60);
+
+    return $this->callCasher()->generateInvoice($order);
   }
 
   public function getCategories() {

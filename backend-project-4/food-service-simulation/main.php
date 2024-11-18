@@ -35,4 +35,4 @@ $interestedTastesMap = [
 $Tom = new \Persons\Customers\Customer("Tom", 20, "Saitama", $interestedTastesMap);
 
 $invoice = $Tom->order($saizeriya);
-// $invoice->printInvoice();
+$invoice->printInvoice();
