@@ -13,7 +13,7 @@ class Customer extends Person {
     $this->tastesMap = $tastesMap;
   }
 
-  public function interestedCategories(Restaurant $restaurant): array {
+  private function interestedCategories(Restaurant $restaurant): array {
     $categories = $restaurant->getCategories();
     $categoriesMap = array_flip($categories);
     $interestedList = array_intersect_key($this->tastesMap, $categoriesMap);
@@ -34,11 +34,12 @@ class Customer extends Person {
 
   public function order(Restaurant $restaurant): Invoice {
     $interestedList = $this->interestedCategories($restaurant);
-    
-
+    // Array (
+    //   [CheeseBurger] => 2
+    //   [Spaghetti] => 1
+    // )
     echo "{$this->name} was looking at the menu, and ordered " . implode(', ', $this->toOrdersString($interestedList)).".".PHP_EOL;
-
-    $invoice = new Invoice(29.99, new \DateTime('2024-11-02 14:30:00'), 30);
+    $invoice = $restaurant->order($interestedList);
 
     return $invoice;
   }
