@@ -9,8 +9,9 @@ class HawaiianPizza extends FoodItem {
   public function __construct() {
     $name = "HawaiianPizza";
     $description = "a pizza topped with ham and pineapple, blending savory and sweet flavors in each bite.";
-    $price = 10.0;
-    parent::__construct($name, $description, $price);
+    $price = 18.0;
+    $preparationMinTime = 2;
+    parent::__construct($name, $description, $price, $preparationMinTime);
   }
 
   public function getCategory(): string {

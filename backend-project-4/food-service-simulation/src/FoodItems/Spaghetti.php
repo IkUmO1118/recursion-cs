@@ -9,8 +9,9 @@ class Spaghetti extends FoodItem {
   public function __construct() {
     $name = "Spaghetti";
     $description = "a classic Italian pasta dish made with long, thin noodles, often served with a rich tomato sauce.";
-    $price = 13.0;
-    parent::__construct($name, $description, $price);
+    $price = 23.0;
+    $preparationMinTime = 5;
+    parent::__construct($name, $description, $price, $preparationMinTime);
   }
 
   public function getCategory(): string {

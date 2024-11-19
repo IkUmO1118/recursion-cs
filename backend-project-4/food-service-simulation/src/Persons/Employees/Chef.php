@@ -14,12 +14,13 @@ class Chef extends Employee {
     $items = $order->getItems();
     $itemCount = count($items);
 
+    $estimatedTime = 0;
     for($i=0; $i<$itemCount; $i++) {
       $item = $items[$i];
+      $estimatedTime += $item->getPreparationMinTime();
       echo "{$this->name} was cooking " . $item->getCategory() . PHP_EOL;
     }
 
-    $estimatedTime = 7;
     echo "{$this->name} took {$estimatedTime} minutes to cook". PHP_EOL;
   }
 }

@@ -10,7 +10,8 @@ class CheeseBurger extends FoodItem {
     $name = "CheeseBurger";
     $description = "a burger with a slice of melted cheese on top of the meat patty.";
     $price = 10.0;
-    parent::__construct($name, $description, $price);
+    $preparationMinTime = 1;
+    parent::__construct($name, $description, $price, $preparationMinTime);
   }
 
   public function getCategory(): string {
