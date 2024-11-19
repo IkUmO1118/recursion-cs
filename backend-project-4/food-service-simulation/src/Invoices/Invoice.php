@@ -3,10 +3,10 @@
 namespace Invoices;
 class Invoice {
   public float $finalPrice;
-  public int $orderTime;
+  public string $orderTime;
   public int $estimatedTimeInMinutes;
 
-  public function __construct(float $finalPrice, int $orderTime, int $estimatedTimeInMinutes)
+  public function __construct(float $finalPrice, string $orderTime, int $estimatedTimeInMinutes)
   {
     $this->finalPrice = $finalPrice;
     $this->orderTime = $orderTime;

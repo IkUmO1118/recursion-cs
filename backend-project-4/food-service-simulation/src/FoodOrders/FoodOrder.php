@@ -13,5 +13,9 @@ class FoodOrder {
 
   public function getItems(): array {
     return $this->items;
-}
+  }
+
+  public function getFormattedTime(): string {
+    return date("D M d, Y G:i", $this->orderTime);
+  }
 }

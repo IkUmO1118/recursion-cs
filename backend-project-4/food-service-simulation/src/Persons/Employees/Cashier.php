@@ -22,7 +22,7 @@ class Cashier extends Employee {
       }
     }
 
-    return new FoodOrder($foodItems, 20241118);
+    return new FoodOrder($foodItems, time());
   }
 
   public function generateInvoice(FoodOrder $order): Invoice {
@@ -32,7 +32,7 @@ class Cashier extends Employee {
     $totalPrice = $this->getTotalPrice($items, $itemCount);
 
     echo "{$this->name} made the invoice." . PHP_EOL;
-    return new Invoice($totalPrice, 20241118, 7);
+    return new Invoice($totalPrice, $order->getFormattedTime(), 7);
   }
 
   public function getTotalPrice(array $items, int $count): float {
