@@ -1,5 +1,8 @@
 <?php
 
+namespace Companies\Restaurants;
+
+use FileConverter\FileConvertible;
 use Users\Employees\Employee;
 
 class RestaurantLocation implements FileConvertible
@@ -9,7 +12,7 @@ class RestaurantLocation implements FileConvertible
   private string $city;
   private string $state;
   private string $zipCode;
-  /**@var Employee[] */
+  /** @var Employee[] */
   private array $employees;
   private bool $isOpen;
 
@@ -22,6 +25,11 @@ class RestaurantLocation implements FileConvertible
     $this->zipCode = $name;
     $this->employees = $employees;
     $this->isOpen = $isOpen;
+  }
+
+  public function shortIntroduction(): string
+  {
+    return sprintf("Company Name:%s Address: %s ZipCode: %s", $this->getName(), sprintf("%s, %s, %s", $this->getAddress(), $this->getCity(), $this->getState()), $this->getZipCode());
   }
 
   public function toString(): string

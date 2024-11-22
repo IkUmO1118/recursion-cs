@@ -1,5 +1,10 @@
 <?php
 
+namespace Companies\Restaurants;
+
+use Companies\Company;
+use FileConverter\FileConvertible;
+
 class RestaurantChain extends Company implements FileConvertible
 {
   private int $chainId;

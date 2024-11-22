@@ -4,7 +4,7 @@ namespace Users\Employees;
 
 use Users\User;
 use DateTime;
-use FileConvertible;
+use FileConverter\FileConvertible;
 
 class Employee extends User implements FileConvertible
 {
@@ -52,15 +52,12 @@ class Employee extends User implements FileConvertible
   public function toString(): string
   {
     return sprintf(
-      "ID: %d\nName: %s %s\nEmail: %s\nJob Title: %s\nSalary: %.2f\nStart Date: %s\nAwards: %s",
+      "ID: %d, Job Title: %s, %s %s, Start Date: %s",
       $this->getId(),
+      $this->jobTitle,
       $this->getFirstName(),
       $this->getLastName(),
-      $this->getEmail(),
-      $this->jobTitle,
-      $this->salary,
       $this->startDate->format('Y-m-d'),
-      implode(', ', $this->awards)
     );
   }
 

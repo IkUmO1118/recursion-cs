@@ -9,5 +9,8 @@ return array(
     'Users\\' => array($baseDir . '/src/Users'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Helpers\\' => array($baseDir . '/src/Helpers'),
+    'FileConverter\\' => array($baseDir . '/src/FileConverter'),
     'Faker\\' => array($vendorDir . '/fakerphp/faker/src/Faker'),
+    'Companies\\Restaurants\\' => array($baseDir . '/src/Companies/Restaurants'),
+    'Companies\\' => array($baseDir . '/src/Companies'),
 );

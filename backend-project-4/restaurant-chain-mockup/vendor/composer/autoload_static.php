@@ -25,7 +25,13 @@ class ComposerStaticInit662aedcc6781129fa81bbdd533343456
         ),
         'F' => 
         array (
+            'FileConverter\\' => 14,
             'Faker\\' => 6,
+        ),
+        'C' => 
+        array (
+            'Companies\\Restaurants\\' => 22,
+            'Companies\\' => 10,
         ),
     );
 
@@ -42,9 +48,21 @@ class ComposerStaticInit662aedcc6781129fa81bbdd533343456
         array (
             0 => __DIR__ . '/../..' . '/src/Helpers',
         ),
+        'FileConverter\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/FileConverter',
+        ),
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
+        ),
+        'Companies\\Restaurants\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Companies/Restaurants',
+        ),
+        'Companies\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Companies',
         ),
     );
 

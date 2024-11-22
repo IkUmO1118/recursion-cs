@@ -5,7 +5,10 @@
     "autoload": {
         "psr-4": {
             "Helpers\\": "src/Helpers/",
-            "Users\\": "src/Users/"
+            "Users\\": "src/Users/",
+            "Companies\\": "src/Companies/",
+            "Companies\\Restaurants\\": "src/Companies/Restaurants/",
+            "FileConverter\\": "src/FileConverter/"
         }
     }
 }

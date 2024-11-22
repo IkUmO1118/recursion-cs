@@ -1,5 +1,7 @@
 <?php
 
+namespace FileConverter;
+
 interface FileConvertible
 {
   public function toString(): string;

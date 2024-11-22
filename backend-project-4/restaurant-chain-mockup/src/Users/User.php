@@ -3,7 +3,7 @@
 namespace Users;
 
 use DateTime;
-use FileConvertible;
+use FileConverter\FileConvertible;
 
 class User implements FileConvertible
 {

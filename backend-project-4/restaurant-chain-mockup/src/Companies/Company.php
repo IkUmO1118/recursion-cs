@@ -1,4 +1,9 @@
 <?php
+
+namespace Companies;
+
+use FileConverter\FileConvertible;
+
 class Company implements FileConvertible
 {
   private string $name;
