@@ -25,41 +25,44 @@ $restaurantChain = RandomGenerator::restaurantChains($min, $max);
   <title>User Profiles</title>
 </head>
 
-<body>
-  <div class="vh-100 bg-white pt-30">
-    <?php foreach ($restaurantChain as $chain): ?>
-      <div class="justify-content-center">
-        <h1 class="text-center">Restaurant Chain <?php echo $chain->getName() ?></h1>
-        <div class="p-5">
-          <div class="border-line bg-gray rounded-md">
-            <h4 class="pl-20">Restaurant Chain information</h4>
-            <div>
-              <div class="border-line bg-white p-10">
-                <div class="d-flex flex-column flex-gap-4">
-                  <?php foreach ($chain->getRestaurantLocations() as $location): ?>
-                    <div class="accordion">
-                      <div class="justify-content-between d-flex p-10 bg-blue text-blue accordion-header">
-                        <h5 class="bg-blue text-blue m-0"><?php echo $location->getName() ?></h5>
-                        <div class="flex-between font-20  triangle"> ＞ </div>
-                      </div>
-                      <div class="pt-0 accordion-content">
-                        <p class="pl-20 pt-0 border-none mt-10"><?php echo $location->shortIntroduction() ?></p>
-                        <h4 class="pl-20 border-none mt-10 mb-10">Employee:</h4>
+<body class="bg-white">
+
+  <div class="vh-100">
+    <div class="flex flex-col gap-40 mx-128 my-64">
+      <?php foreach ($restaurantChain as $chain): ?>
+        <div class="flex flex-col gap-20">
+          <h2 class="self-center text-4xl">Restaurant Chain <?php echo $chain->getName() ?></h2>
+          <div class="w-100 flex flex-col border rounded">
+            <h4 class="w-100 py-8 px-16 bg-grey text-base text-grey border-bottom">Restaurant Chain Information</h4>
+            <div class="p-16">
+              <?php foreach ($chain->getRestaurantLocations() as $location): ?>
+                <div class="accordion">
+                  <h4 class="w-100 bg-blue font-semibold text-base text-blue border-bottom p-12 px-18 accordion-header"><?php echo $location->getName() ?></h4>
+                  <div class="accordion-content">
+                    <h4 class="w-100 text-base"><?php echo $location->shortIntroduction() ?></h4>
+                    <div class="border-bottom"></div>
+                    <div class="flex flex-col gap-6">
+                      <h4 class="text-xl">Employees:</h4>
+                      <div class="border rounded">
                         <?php foreach ($location->getEmployees() as $employee): ?>
-                          <p class="employee border-line m-0 p-10 pl-20"><?php echo $employee->toString() ?></p>
-                        <?php endforeach; ?>
+                          <div class="py-8 px-16">
+                            <h4 class="font-base text-base text-grey"><?php echo $employee->toString() ?></h4>
+                          </div>
+                        <?php endforeach ?>
                       </div>
                     </div>
-                  <?php endforeach; ?>
+                  </div>
                 </div>
-              </div>
+              <?php endforeach; ?>
             </div>
           </div>
-        <?php endforeach; ?>
         </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
 
-        <!-- javascriptの呼び出し -->
-        <script src="js/script.js"></script>
+  <!-- javascriptの呼び出し -->
+  <script src="js/script.js"></script>
 
 </body>
 
