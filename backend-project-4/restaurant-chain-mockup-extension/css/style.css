@@ -5,7 +5,7 @@
  }
 
  .w-100 {
-  width: 100;
+  width: 100%;
  }
 
  .h-100 {
@@ -22,6 +22,10 @@
 
 .bg-blue {
   background-color: #dbeafe;
+}
+
+.bg-green {
+  background-color: #4959;
 }
 
 .m-18 {
@@ -129,30 +133,50 @@
 
  .flex {
   display: flex;
- }
+}
 
- .gap-6 {
+.flex-1 {
+  flex: 1;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-rows-header {
+  grid-template-rows: 5rem 1fr;
+}
+
+.grid-columns-sidebar {
+  grid-template-columns: 20rem 1fr;
+}
+
+.gap-6 {
   gap :6px;
- }
+}
 
  .gap-18 {
-  gap :18px;
+   gap :18px;
+  }
+  .gap-20 {
+    gap :20px;
  }
- .gap-20 {
-  gap :20px;
- }
-
+ 
  .gap-40 {
-  gap: 40px;
- }
+   gap: 40px;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .self-center {
+    align-self: center;
+  }
 
- .flex-col {
-  flex-direction: column;
- }
-
- .self-center {
-  align-self: center;
- }
+  .justify-between {
+    justify-content: space-between;
+  }
 
  .border {
   border: 1px solid #d4d4d4;
@@ -162,32 +186,10 @@
   border-bottom: 1px solid #d4d4d4;
 }
 
-.rounded {
+.rounded-sm {
   border-radius: 6px;
 }
 
-.border > .py-8 {
-  border-bottom: 1px solid #ccc;
-}
-
-.border > .py-8:last-child {
-  border-bottom: none; 
-}
-
-.accordion-header {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
-.accordion-content {
-  display: none;
-}
-
-.accordion.open .accordion-content {
-  display: inline;
-  margin: 18px;
-  display: flex;
-  flex-direction: column;
-  gap:18px;
+.rounded-md {
+  border-radius: 12px;
 }
