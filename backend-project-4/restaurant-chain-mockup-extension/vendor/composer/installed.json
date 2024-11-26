@@ -1,14 +1,9 @@
 {
-    "_readme": [
-        "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-        "This file is @generated automatically"
-    ],
-    "content-hash": "0ac0340f2120a65e4928bde600db496b",
     "packages": [
         {
             "name": "fakerphp/faker",
             "version": "v1.24.1",
+            "version_normalized": "1.24.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FakerPHP/Faker.git",
@@ -42,7 +37,9 @@
                 "ext-iconv": "Required by Faker\\Provider\\ru_RU\\Text::realText() for generating real Russian text.",
                 "ext-mbstring": "Required for multibyte Unicode string functionality."
             },
+            "time": "2024-11-21T13:46:39+00:00",
             "type": "library",
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "Faker\\": "src/Faker/"
@@ -67,11 +64,12 @@
                 "issues": "https://github.com/FakerPHP/Faker/issues",
                 "source": "https://github.com/FakerPHP/Faker/tree/v1.24.1"
             },
-            "time": "2024-11-21T13:46:39+00:00"
+            "install-path": "../fakerphp/faker"
         },
         {
             "name": "psr/container",
             "version": "2.0.2",
+            "version_normalized": "2.0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
@@ -86,12 +84,14 @@
             "require": {
                 "php": ">=7.4.0"
             },
+            "time": "2021-11-05T16:47:00+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.0.x-dev"
                 }
             },
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "Psr\\Container\\": "src/"
@@ -120,11 +120,12 @@
                 "issues": "https://github.com/php-fig/container/issues",
                 "source": "https://github.com/php-fig/container/tree/2.0.2"
             },
-            "time": "2021-11-05T16:47:00+00:00"
+            "install-path": "../psr/container"
         },
         {
             "name": "symfony/deprecation-contracts",
             "version": "v3.5.0",
+            "version_normalized": "3.5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
@@ -139,6 +140,7 @@
             "require": {
                 "php": ">=8.1"
             },
+            "time": "2024-04-18T09:32:20+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -149,6 +151,7 @@
                     "url": "https://github.com/symfony/contracts"
                 }
             },
+            "installation-source": "dist",
             "autoload": {
                 "files": [
                     "function.php"
@@ -187,16 +190,9 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:32:20+00:00"
+            "install-path": "../symfony/deprecation-contracts"
         }
     ],
-    "packages-dev": [],
-    "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": {},
-    "prefer-stable": false,
-    "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "dev": true,
+    "dev-package-names": []
 }
