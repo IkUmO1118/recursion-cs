@@ -85,7 +85,7 @@ class RandomGenerator
       $company->getDescription(),
       $company->getWebsite(),
       $company->getPhone(),
-      $company->getIndustry(),
+      $company->getIndustory(),
       $company->getCeo(),
       $company->getIsPubliclyTraded(),
       $company->getCountry(),

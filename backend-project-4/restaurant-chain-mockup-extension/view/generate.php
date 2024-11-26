@@ -24,18 +24,18 @@
         </ol>
       </div>
       <div class="flex flex-col border-2 rounded-md">
-        <form action="downloal.php" method="post" class="flex flex-col gap-40 self-center my-auto">
+        <form action="download.php" method="post" class="flex flex-col gap-40 self-center my-auto">
 
           <!-- total users -->
           <div class="flex flex-col gap-4">
-            <label for="users">1. 会社が持っている、レストランブランドの数を入力: </label>
+            <label for="numberOfChains">1. 会社が持っている、レストランブランドの数を入力: </label>
             <input type="number" id="numberOfChains" name="numberOfChains" min="1" max="100" value="2" required>
           </div>
 
 
           <!-- employees of chain  -->
           <div class="flex flex-col gap-4">
-            <label for="employees">2. 従業員数を入力: </label>
+            <label for="numberOfEmployees">2. 従業員数を入力: </label>
             <input type="number" id="numberOfEmployees" name="numberOfEmployees" min="1" max="100" value="2" required>
           </div>
 
@@ -43,28 +43,27 @@
           <!-- range of employee's salary -->
           <div class="flex flex-col gap-12">
             <div class="flex flex-col gap-4">
-              <label for="salary">3. 従業員の給料の幅を入力</label>
+              <label for="minSalary">3. 従業員の給料の幅を入力</label>
             </div>
 
             <div class="flex justify-between">
               <label class="pl-20" for="minSalary">最低賃金: </label>
-              <input class="" type="number" id="minSalary" name="minSalary" min="1" max="9999" value="1" required>
+              <input type="number" id="minSalary" name="minSalary" min="1" max="9999" value="1" required>
               <label class="pl-20" for="maxSalary">最大賃金: </label>
               <input type="number" id="maxSalary" name="maxSalary" min="1" max="9999" value="10" required>
             </div>
           </div>
 
-
           <!-- total locations -->
-          <div class="">
-            <label for="locations">4. レストランチェーンが何店舗あるかを入力: </label>
+          <div>
+            <label for="numberOfLocations">4. レストランチェーンが何店舗あるかを入力: </label>
             <input type="number" id="numberOfLocations" name="numberOfLocations" min="1" max="10" value="2" required>
           </div>
 
           <!-- file format select -->
-          <div class="">
+          <div>
             <label for="format">最後に、出力フォーマットを選択してください: </label>
-            <select name="format">
+            <select name="format" id="format">
               <option value="html">HTML</option>
               <option value="md">Markdown</option>
               <option value="json">JSON</option>

@@ -11,7 +11,7 @@ class Company implements FileConvertible
   private string $description;
   private string $website;
   private string $phone;
-  private string $industry;
+  private string $industory;
   private string $ceo;
   private bool $isPubliclyTraded;
   private string $country;
@@ -24,7 +24,7 @@ class Company implements FileConvertible
     string $description,
     string $website,
     string $phone,
-    string $industry,
+    string $industory,
     string $ceo,
     bool $isPubliclyTraded,
     string $country,
@@ -36,7 +36,7 @@ class Company implements FileConvertible
     $this->description = $description;
     $this->website = $website;
     $this->phone = $phone;
-    $this->industry = $industry;
+    $this->industory = $industory;
     $this->ceo = $ceo;
     $this->isPubliclyTraded = $isPubliclyTraded;
     $this->country = $country;
@@ -47,13 +47,13 @@ class Company implements FileConvertible
   public function toString(): string
   {
     return sprintf(
-      "Company: %s\nFounded: %d\nDescription: %s\nWebsite: %s\nPhone: %s\nIndustry: %s\nCEO: %s\nPublicly Traded: %s\nCountry: %s\nFounder: %s\nTotal Employees: %d\n",
+      "Company: %s\nFounded: %d\nDescription: %s\nWebsite: %s\nPhone: %s\nIndustory: %s\nCEO: %s\nPublicly Traded: %s\nCountry: %s\nFounder: %s\nTotal Employees: %d\n",
       $this->name,
       $this->foundingYear,
       $this->description,
       $this->website,
       $this->phone,
-      $this->industry,
+      $this->industory,
       $this->ceo,
       $this->isPubliclyTraded ? 'Yes' : 'No',
       $this->country,
@@ -71,7 +71,7 @@ class Company implements FileConvertible
               <p><strong>Description:</strong> %s</p>
               <p><strong>Website:</strong> <a href='%s'>%s</a></p>
               <p><strong>Phone:</strong> %s</p>
-              <p><strong>Industry:</strong> %s</p>
+              <p><strong>Industory:</strong> %s</p>
               <p><strong>CEO:</strong> %s</p>
               <p><strong>Publicly Traded:</strong> %s</p>
               <p><strong>Country:</strong> %s</p>
@@ -84,7 +84,7 @@ class Company implements FileConvertible
       $this->website,
       $this->website,
       $this->phone,
-      $this->industry,
+      $this->industory,
       $this->ceo,
       $this->isPubliclyTraded ? 'Yes' : 'No',
       $this->country,
@@ -100,7 +100,7 @@ class Company implements FileConvertible
 - Description: {$this->description}
 - Website: [{$this->website}]({$this->website})
 - Phone: {$this->phone}
-- Industry: {$this->industry}
+- Industory: {$this->industory}
 - CEO: {$this->ceo}
 - Publicly Traded: " . ($this->isPubliclyTraded ? 'Yes' : 'No') . "
 - Country: {$this->country}
@@ -116,7 +116,7 @@ class Company implements FileConvertible
       'description' => $this->description,
       'website' => $this->website,
       'phone' => $this->phone,
-      'industry' => $this->industry,
+      'industory' => $this->industory,
       'ceo' => $this->ceo,
       'isPubliclyTraded' => $this->isPubliclyTraded,
       'country' => $this->country,
@@ -151,9 +151,9 @@ class Company implements FileConvertible
     return $this->phone;
   }
 
-  public function getIndustry(): string
+  public function getIndustory(): string
   {
-    return $this->industry;
+    return $this->industory;
   }
 
   public function getCeo(): string
@@ -209,7 +209,7 @@ class Company implements FileConvertible
 
   public function setIndustry(string $industry): void
   {
-    $this->industry = $industry;
+    $this->industory = $industry;
   }
 
   public function setCeo(string $ceo): void
