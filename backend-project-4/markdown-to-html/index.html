@@ -6,7 +6,35 @@
     <title>Markdown to HTML</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-neutral-100">
-    <h1 class="text-red-600">MARKDOWN TO HTML</h1>
+  <body class="bg-neutral-100 p-6 h-screen">
+    <div
+      class="h-full border overflow-hidden border-gray-300 rounded-md bg-neutral-50 flex flex-col"
+    >
+      <div class="px-2 py-2 bg-neutral-200 flex justify-between items-center">
+        <h1 class="text-base font-medium text-neutral-700">Markdown to HTML</h1>
+        <form action="src/converter.php" id="md-form" class="flex gap-2">
+          <select
+            name="output-type"
+            id="output-type"
+            class="bg-neutral-200 text-neutral-800 text-sm"
+          >
+            <option value="download">Download HTML</option>
+            <option value="display">Display HTML</option>
+          </select>
+          <input
+            type="submit"
+            value="conversion"
+            class="cursor-pointer text-base font-medium flex items-center text-neutral-300 bg-neutral-800 py-1 px-3 hover:bg-neutral-700 transition-all duration-150 rounded-md"
+          />
+        </form>
+      </div>
+      <div class="flex flex-1">
+        <div id="editor" class="w-1/2 h-full"></div>
+        <div id="preview" class="w-1/2 h-full"></div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
+    <script src="src/editor.js"></script>
   </body>
 </html>
