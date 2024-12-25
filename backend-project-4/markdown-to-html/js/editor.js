@@ -21,7 +21,7 @@ require(['vs/editor/editor.main'], function () {
   // init event listner
   const downloadForm = document.getElementById('md-form');
   downloadForm.addEventListener('submit', (e) => {
-    e.preventDefault(); // フォームのデフォルトの送信を防ぐ
+    e.preventDefault();
     const outputType = document.getElementById('output-type').value;
     const format = outputType === 'download' ? 'converter' : 'rendered';
     convert(editor.getValue(), format);
@@ -38,7 +38,7 @@ require(['vs/editor/editor.main'], function () {
 
 async function post(content, format) {
   try {
-    const res = await fetch('./src/converter.php', {
+    const res = await fetch('../src/converter.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ async function post(content, format) {
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      window.URL.revokeObjectURL(url); // URLを解放
+      window.URL.revokeObjectURL(url);
     } else if (format === 'rendered') {
       const htmlContent = await res.text();
       const newWindow = window.open();
