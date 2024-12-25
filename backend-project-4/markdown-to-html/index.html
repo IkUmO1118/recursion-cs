@@ -4,36 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Markdown to HTML</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style/styles.css" />
   </head>
-  <body class="bg-neutral-100 p-6 h-screen">
-    <div
-      class="h-full border overflow-hidden border-gray-300 rounded-md bg-neutral-50 flex flex-col"
-    >
-      <div class="px-2 py-2 bg-neutral-200 flex justify-between items-center">
-        <h1 class="text-base font-medium text-neutral-700">Markdown to HTML</h1>
-        <form action="src/converter.php" id="md-form" class="flex gap-2">
-          <select
-            name="output-type"
-            id="output-type"
-            class="bg-neutral-200 text-neutral-800 text-sm"
-          >
-            <option value="download">Download HTML</option>
-            <option value="display">Display HTML</option>
-          </select>
-          <input
-            type="submit"
-            value="conversion"
-            class="cursor-pointer text-base font-medium flex items-center text-neutral-300 bg-neutral-800 py-1 px-3 hover:bg-neutral-700 transition-all duration-150 rounded-md"
-          />
-        </form>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1 class="title">Markdown to HTML</h1>
+        <div class="preview-header">
+          <div id="radio-wrapper" class="radio-wrapper">
+            <label>
+              <input type="radio" name="view" value="preview" checked />
+              Preview
+            </label>
+            <label>
+              <input type="radio" name="view" value="html" />
+              HTML
+            </label>
+          </div>
+          <form action="src/converter.php" id="md-form" class="form">
+            <select name="output-type" id="output-type">
+              <option value="download">Download HTML</option>
+              <option value="preview">Display HTML</option>
+            </select>
+            <button id="conversionBtn" type="submit" class="button">
+              conversion
+            </button>
+          </form>
+        </div>
       </div>
-      <div class="flex flex-1">
-        <div id="editor" class="w-1/2 h-full"></div>
-        <div id="preview" class="w-1/2 h-full"></div>
+      <div class="main">
+        <div id="editor" class="editor"></div>
+        <div id="preview" class="preview">
+          <div id="content" class="content"></div>
+        </div>
       </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
     <script src="src/editor.js"></script>
   </body>
