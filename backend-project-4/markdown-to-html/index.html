@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="header">
+      <!-- <div class="header">
         <h1 class="title">Markdown to HTML</h1>
         <div class="preview-header">
           <div id="radio-wrapper" class="radio-wrapper">
@@ -31,15 +31,30 @@
             </button>
           </form>
         </div>
+      </div> -->
+      <div class="header">
+        <p class="date" id="date"></p>
+        <div class="icons">
+          <div class="icon" id="share">
+            <img src="public/share-icon.svg" alt="share icon" />
+          </div>
+          <div class="icon" id="download">
+            <img src="public/download-icon.svg" alt="share icon" />
+          </div>
+        </div>
       </div>
       <div class="main">
         <div id="editor" class="editor"></div>
         <div id="preview" class="preview">
+          <div class="select">
+            <div class="option active" id="option-preview">Preview</div>
+            <div class="option" id="option-html">HTML</div>
+          </div>
           <div id="content" class="content"></div>
         </div>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
-    <script src="js/editor.js"></script>
+    <script src="src/editor.js"></script>
   </body>
 </html>
