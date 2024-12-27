@@ -1,5 +1,7 @@
 const previewOption = document.getElementById('option-preview');
 const htmlOption = document.getElementById('option-html');
+const downloadBtn = document.getElementById('download-btn');
+const shareBtn = document.getElementById('share-btn');
 
 require.config({
   paths: {
@@ -22,28 +24,29 @@ require(['vs/editor/editor.main'], function () {
   });
 
   // init event listner
-  // const downloadForm = document.getElementById('md-form');
-  // downloadForm.addEventListener('submit', (e) => {
-  //   e.preventDefault(); // フォームのデフォルトの送信を防ぐ
-  //   const outputType = document.getElementById('output-type').value;
-  //   const format = outputType === 'download' ? 'converter' : 'rendered';
-  //   convert(editor.getValue(), format);
-  // });
+  downloadBtn.addEventListener('click', () =>
+    convert(editor.getValue(), 'download')
+  );
 
-  // changed view type
-  // -------------toggle section------------
-  function toggleActive(targetId) {
-    document.querySelectorAll('.option').forEach((option) => {
-      option.classList.remove('active');
-    });
+  shareBtn.addEventListener('click', () => convert(editor.getValue(), 'share'));
 
-    document.getElementById(targetId).classList.add('active');
-    convert(editor.getValue(), targetId);
-  }
-
-  previewOption.addEventListener('click', () => toggleActive('option-preview'));
-  htmlOption.addEventListener('click', () => toggleActive('option-html'));
+  // changed option type
+  previewOption.addEventListener('click', () =>
+    toggleActive('option-preview', editor.getValue())
+  );
+  htmlOption.addEventListener('click', () =>
+    toggleActive('option-html', editor.getValue())
+  );
 });
+
+function toggleActive(targetId, content) {
+  document.querySelectorAll('.option').forEach((option) => {
+    option.classList.remove('active');
+  });
+
+  document.getElementById(targetId).classList.add('active');
+  convert(content, targetId);
+}
 
 async function post(content, format) {
   try {
@@ -67,7 +70,14 @@ async function post(content, format) {
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      window.URL.revokeObjectURL(url); // URLを解放
+      window.URL.revokeObjectURL(url);
+    } else if (format === 'share') {
+      const shareData = {
+        title: 'Markdown content',
+        text: await res.text(),
+      };
+
+      await navigator.share(shareData);
     } else {
       const htmlContent = await res.text();
       return htmlContent;
@@ -78,7 +88,7 @@ async function post(content, format) {
 }
 
 async function convert(content, format) {
-  if (format === 'download') {
+  if (format === 'download' || format === 'share') {
     await post(content, format);
   } else {
     const convertedContent = await post(content, format);
