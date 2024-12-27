@@ -113,6 +113,11 @@ body {
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
+  color: #6b21a8;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
 }
 
 .content h1,
