@@ -1,3 +1,6 @@
+const previewOption = document.getElementById('option-preview');
+const htmlOption = document.getElementById('option-html');
+
 require.config({
   paths: {
     vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs',
@@ -14,8 +17,7 @@ require(['vs/editor/editor.main'], function () {
     const content = editor.getValue();
 
     if (content) {
-      convert(content, preview);
-      // convert(content, getCurrentView());
+      convert(content, getCurrentView());
     }
   });
 
@@ -29,12 +31,18 @@ require(['vs/editor/editor.main'], function () {
   // });
 
   // changed view type
-  document.querySelectorAll('input[name="view"]').forEach((el) => {
-    el.addEventListener('change', (e) => {
-      const content = editor.getValue();
-      if (content) convert(content, e.target.value);
+  // -------------toggle section------------
+  function toggleActive(targetId) {
+    document.querySelectorAll('.option').forEach((option) => {
+      option.classList.remove('active');
     });
-  });
+
+    document.getElementById(targetId).classList.add('active');
+    convert(editor.getValue(), targetId);
+  }
+
+  previewOption.addEventListener('click', () => toggleActive('option-preview'));
+  htmlOption.addEventListener('click', () => toggleActive('option-html'));
 });
 
 async function post(content, format) {
@@ -50,7 +58,7 @@ async function post(content, format) {
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
-    if (format === 'converter') {
+    if (format === 'download') {
       const blob = await res.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -60,11 +68,6 @@ async function post(content, format) {
       a.click();
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url); // URLを解放
-    } else if (format === 'rendered') {
-      const htmlContent = await res.text();
-      const newWindow = window.open();
-      newWindow.document.write(htmlContent);
-      newWindow.document.close();
     } else {
       const htmlContent = await res.text();
       return htmlContent;
@@ -75,49 +78,34 @@ async function post(content, format) {
 }
 
 async function convert(content, format) {
-  if (format === 'converter') {
+  if (format === 'download') {
     await post(content, format);
   } else {
     const convertedContent = await post(content, format);
     const previewContentEl = document.getElementById('content');
 
-    if (format === 'preview') {
+    if (format === 'option-preview') {
       previewContentEl.innerHTML = convertedContent;
-    } else {
+    }
+    if (format === 'option-html') {
       previewContentEl.innerText = convertedContent;
     }
   }
 }
 
 function getCurrentView() {
-  return document.querySelector('input[name="view"]:checked').value;
+  return document.querySelector('.option.active').id;
 }
-
-// -------------toggle section------------
-const previewOption = document.getElementById('option-preview');
-const htmlOption = document.getElementById('option-html');
-
-function toggleActive(targetId) {
-  document.querySelectorAll('.option').forEach((option) => {
-    option.classList.remove('active');
-  });
-
-  document.getElementById(targetId).classList.add('active');
-}
-
-previewOption.addEventListener('click', () => toggleActive('option-preview'));
-htmlOption.addEventListener('click', () => toggleActive('option-html'));
 
 // -------------get now date----------------
 function updateDate() {
   const now = new Date();
-  const year = now.getFullYear(); // 年を取得
-  const month = String(now.getMonth() + 1).padStart(2, '0'); // 月を取得 (0始まりなので+1)、2桁にフォーマット
-  const day = String(now.getDate()).padStart(2, '0'); // 日を取得、2桁にフォーマット
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
 
-  const formattedDate = `${year}-${month}-${day}`; // フォーマット "YYYY-MM-DD"
-  document.getElementById('date').textContent = formattedDate; // 表示
+  const formattedDate = `${year}-${month}-${day}`;
+  document.getElementById('date').textContent = formattedDate;
 }
 
-// ページ読み込み時に実行
 updateDate();

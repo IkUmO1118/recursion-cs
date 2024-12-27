@@ -8,7 +8,7 @@ $parsedown = new Parsedown();
 $convertedContent = $parsedown->text($req['content']);
 $format = $req['format'];
 
-if ($format === 'converter') {
+if ($format === 'download') {
   header('Content-Type: text/html');
   header('Content-Disposition: attachment; filename="converted.txt"');
   echo $convertedContent;
