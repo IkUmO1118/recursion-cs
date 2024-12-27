@@ -1,7 +1,9 @@
+const previewContentEl = document.getElementById('content');
 const previewOption = document.getElementById('option-preview');
 const htmlOption = document.getElementById('option-html');
 const downloadBtn = document.getElementById('download-btn');
 const shareBtn = document.getElementById('share-btn');
+const clearBtn = document.getElementById('clear-btn');
 
 require.config({
   paths: {
@@ -37,6 +39,14 @@ require(['vs/editor/editor.main'], function () {
   htmlOption.addEventListener('click', () =>
     toggleActive('option-html', editor.getValue())
   );
+
+  // clear editor
+  clearBtn.addEventListener('click', function () {
+    editor.setValue('');
+    while (previewContentEl.firstChild) {
+      previewContentEl.removeChild(previewContentEl.firstChild);
+    }
+  });
 });
 
 function toggleActive(targetId, content) {
@@ -92,7 +102,6 @@ async function convert(content, format) {
     await post(content, format);
   } else {
     const convertedContent = await post(content, format);
-    const previewContentEl = document.getElementById('content');
 
     if (format === 'option-preview') {
       previewContentEl.innerHTML = convertedContent;

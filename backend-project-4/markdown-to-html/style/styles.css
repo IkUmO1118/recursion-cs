@@ -60,11 +60,25 @@ body {
   border: none;
   background-color: inherit;
   cursor: pointer;
-  transition: all;
-  duration: 0.2s;
 }
 
 .icon:hover {
+  background-color: #e5e5e5;
+}
+
+.btn-outline {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  background-color: inherit;
+  border: none;
+  outline: 0.8px solid #d4d4d4;
+  color: #404040;
+  border-radius: 10rem;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
   background-color: #e5e5e5;
 }
 
