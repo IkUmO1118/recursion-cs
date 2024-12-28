@@ -1,49 +1,29 @@
 # Markdown to HTML
 
-## Description
+**[Click here for the app](https://mdtohtml.19mod.com 'open')**
 
-A brief description of what this project does and who it's for.
+## Project Overview
 
-## Installation
+This application is a Markdown to HTML web application. The application allows users to submit Markdown and the server will display the Markdown converted to HTML.
 
-Instructions on how to install and set up the project.
+## Technologies Used
 
-```bash
-# Clone the repository
-git clone https://github.com/username/repository.git
+This site was created using the following technology stack.
 
-# Navigate to the project directory
-cd repository
+| Category | Technology used |
+| -------- | --------------- |
+| Frontend | JavaScript      |
+| Backend  | PHP             |
+| Server   | AWS<br>NGINX    |
 
-# Install dependencies
-npm install
-```
+## Features
 
-## Usage
-
-Instructions on how to use the project.
-
-```bash
-# Run the project
-npm start
-```
-
-## Contributing
-
-Guidelines for contributing to the project.
-
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature-branch`)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to the branch (`git push origin feature-branch`)
-5. Open a pull request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- When Markdown is entered in the Editor, the rendered HTML is displayed in Preview in real time.
+- The preview has a choice of HTML and HTML language.
+- If the user chooses to download an HTML file, the server creates the HTML file and downloads it to the user's browser.
+- Converted HTML can also be shared
 
 ## Contact
 
-Author Name - [email@example.com](mailto:email@example.com)
-
-Project Link: [https://github.com/username/repository](https://github.com/username/repository)
+- **Email** : ikumo1118free@gmail.com
+- **Phone Number** : 080-7743-8445
