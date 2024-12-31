@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plant UML Server</title>
+    <link rel="stylesheet" href="src/style/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <p class="date" id="date"></p>
+        <div class="icons">
+          <button class="btn-outline" id="clear-btn">Clear</button>
+          <button class="icon" id="download-btn">
+            <img src="public/download-icon.svg" alt="share icon" />
+          </button>
+        </div>
+      </div>
+      <div class="main">
+        <div id="editor" class="editor"></div>
+        <div id="preview" class="preview">
+          <div class="select">
+            <div class="option active" id="option-svg">SVG</div>
+            <div class="option" id="option-png">PNG</div>
+            <div class="option" id="option-ascii">ASCII</div>
+          </div>
+          <div id="content" class="content"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
+    <script src="src/js/main.js"></script>
+  </body>
+</html>
