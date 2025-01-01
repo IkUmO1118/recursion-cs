@@ -89,7 +89,7 @@ async function encode(text, format) {
     const encoded = await post(text, format);
 
     if (format === 'png' || format === 'svg') {
-      previewContentEl.innerHTML = `<img src="${encoded}" alt="encoded image">`;
+      previewContentEl.innerHTML = `<img style="width: 50%;" src="${encoded}" alt="encoded image">`;
     }
     if (format === 'txt') {
       const ascii = await getAscii(encoded);
