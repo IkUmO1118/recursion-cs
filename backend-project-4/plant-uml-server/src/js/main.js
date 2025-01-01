@@ -12,7 +12,7 @@ require.config({
 });
 require(['vs/editor/editor.main'], function () {
   const editor = monaco.editor.create(document.getElementById('editor'), {
-    value: 'Please enter the code here',
+    value: '',
     language: 'markdown',
     automaticLayout: true,
   });
@@ -92,7 +92,6 @@ async function encode(text, format) {
       previewContentEl.innerHTML = `<img src="${encoded}" alt="encoded image">`;
     }
     if (format === 'txt') {
-      console.log(encoded);
       const ascii = await getAscii(encoded);
 
       previewContentEl.innerHTML = `<pre>${ascii}</pre>`;
