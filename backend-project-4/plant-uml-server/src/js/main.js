@@ -12,7 +12,7 @@ require.config({
 });
 require(['vs/editor/editor.main'], function () {
   const editor = monaco.editor.create(document.getElementById('editor'), {
-    value: '',
+    value: 'Please enter the code here',
     language: 'markdown',
     automaticLayout: true,
   });
