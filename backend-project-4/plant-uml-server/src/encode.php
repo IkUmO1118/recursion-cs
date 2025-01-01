@@ -2,9 +2,11 @@
 require __DIR__ . './../vendor/autoload.php';
 use function Jawira\PlantUml\encodep;
 
-// $encode = encodep('
-//     Alice -> Bob: hello
-// ');
+$json = file_get_contents('php://input');
+$data = json_decode($json,true);
 
-// $svg = file_get_contents("https://www.plantuml.com/plantuml/svg/{$encode}");
-// echo $svg;
+$format = $data['format'];
+$text = $data['text'];
+$encode = encodep($text);
+
+echo "https://www.plantuml.com/plantuml/{$format}/{$encode}";

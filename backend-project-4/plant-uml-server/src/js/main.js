@@ -1,9 +1,8 @@
 const previewContentEl = document.getElementById('content');
-const SVGOption = document.getElementById('option-svg');
-const PNGOption = document.getElementById('option-png');
-const ASCIIOption = document.getElementById('option-ascii');
+const SVGOption = document.getElementById('svg');
+const PNGOption = document.getElementById('png');
+const ASCIIOption = document.getElementById('ascii');
 const downloadBtn = document.getElementById('download-btn');
-const shareBtn = document.getElementById('share-btn');
 const clearBtn = document.getElementById('clear-btn');
 
 require.config({
@@ -19,27 +18,27 @@ require(['vs/editor/editor.main'], function () {
   });
 
   editor.getModel().onDidChangeContent(() => {
-    const content = editor.getValue();
+    const text = editor.getValue();
 
-    if (content) {
-      convert(content, getCurrentView());
+    if (text) {
+      encode(text, getCurrentView());
     }
   });
 
   // init event listner
-  downloadBtn.addEventListener('click', () =>
-    convert(editor.getValue(), 'download')
+  downloadBtn.addEventListener('click', async () =>
+    encode(editor.getValue(), 'download')
   );
 
   // changed option type
-  SVGOption.addEventListener('click', () =>
-    toggleActive('option-svg', editor.getValue())
+  SVGOption.addEventListener('click', async () =>
+    toggleActive('svg', editor.getValue())
   );
-  PNGOption.addEventListener('click', () =>
-    toggleActive('option-png', editor.getValue())
+  PNGOption.addEventListener('click', async () =>
+    toggleActive('png', editor.getValue())
   );
-  ASCIIOption.addEventListener('click', () =>
-    toggleActive('option-ascii', editor.getValue())
+  ASCIIOption.addEventListener('click', async () =>
+    toggleActive('ascii', editor.getValue())
   );
 
   // clear editor
@@ -48,54 +47,62 @@ require(['vs/editor/editor.main'], function () {
   });
 });
 
-function toggleActive(targetId, content) {
+async function toggleActive(targetId, text) {
   document.querySelectorAll('.option').forEach((option) => {
     option.classList.remove('active');
   });
 
   document.getElementById(targetId).classList.add('active');
-  // convert(content, targetId);
+  encode(text, targetId);
 }
 
-async function post(content, format) {
+async function post(text, format) {
   try {
     const res = await fetch('./src/encode.php', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'text/plain',
       },
-      body: JSON.stringify({ content, format }),
+      body: JSON.stringify({ format: format, text: text }),
     });
 
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
     if (format === 'download') {
-      const blob = await res.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'converted.html';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
+      console.log('download');
     } else {
-      const htmlContent = await res.text();
-      return htmlContent;
+      return await res.text();
     }
   } catch (error) {
     console.error('Error:', error);
+    throw error;
   }
 }
 
-async function convert(content, format) {
-  if (format === 'download' || format === 'share') {
-    await post(content, format);
+async function encode(text, format) {
+  if (format === 'download') {
+    await post(text, format);
   } else {
-    const encodedContent = await post(content, format);
-    previewContentEl.innerHTML = encodedContent;
+    const encoded = await post(text, format);
+
+    if (format === 'png' || format === 'svg') {
+      previewContentEl.innerHTML = `<img src="${encoded}" alt="encoded image">`;
+    }
+    if (format === 'ascii') {
+      const ascii = await getAscii(encoded);
+
+      previewContentEl.innerHTML = `<pre>${ascii}</pre>`;
+    }
   }
+}
+
+async function getAscii(encoded) {
+  const res = await fetch(encoded, {
+    method: 'GET',
+  });
+
+  return await res.text();
 }
 
 function getCurrentView() {
