@@ -1,7 +1,7 @@
 const previewContentEl = document.getElementById('content');
 const SVGOption = document.getElementById('svg');
 const PNGOption = document.getElementById('png');
-const ASCIIOption = document.getElementById('ascii');
+const ASCIIOption = document.getElementById('txt');
 const downloadBtn = document.getElementById('download-btn');
 const clearBtn = document.getElementById('clear-btn');
 
@@ -31,19 +31,21 @@ require(['vs/editor/editor.main'], function () {
   );
 
   // changed option type
-  SVGOption.addEventListener('click', async () =>
+  SVGOption.addEventListener('click', () =>
     toggleActive('svg', editor.getValue())
   );
-  PNGOption.addEventListener('click', async () =>
+  PNGOption.addEventListener('click', () =>
     toggleActive('png', editor.getValue())
   );
-  ASCIIOption.addEventListener('click', async () =>
-    toggleActive('ascii', editor.getValue())
+  ASCIIOption.addEventListener('click', () =>
+    toggleActive('txt', editor.getValue())
   );
 
   // clear editor
   clearBtn.addEventListener('click', () => {
     editor.setValue('');
+
+    previewContentEl.innerHTML = '';
   });
 });
 
@@ -61,9 +63,9 @@ async function post(text, format) {
     const res = await fetch('./src/encode.php', {
       method: 'POST',
       headers: {
-        'Content-Type': 'text/plain',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ format: format, text: text }),
+      body: JSON.stringify({ format, text }),
     });
 
     if (!res.ok) {
@@ -89,7 +91,8 @@ async function encode(text, format) {
     if (format === 'png' || format === 'svg') {
       previewContentEl.innerHTML = `<img src="${encoded}" alt="encoded image">`;
     }
-    if (format === 'ascii') {
+    if (format === 'txt') {
+      console.log(encoded);
       const ascii = await getAscii(encoded);
 
       previewContentEl.innerHTML = `<pre>${ascii}</pre>`;
@@ -98,9 +101,7 @@ async function encode(text, format) {
 }
 
 async function getAscii(encoded) {
-  const res = await fetch(encoded, {
-    method: 'GET',
-  });
+  const res = await fetch(encoded);
 
   return await res.text();
 }
