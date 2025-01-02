@@ -1,6 +1,6 @@
 # Markdown to HTML
 
-**[Click here for the app](https://mdtohtml.19mod.com 'open')**
+**[Click here for the app](https://md-to-html.19mod.com 'open')**
 
 ## Project Overview
 
