@@ -58,44 +58,52 @@ async function toggleActive(targetId, text) {
   encode(text, targetId);
 }
 
-async function post(text, format) {
-  try {
-    const res = await fetch('./src/encode.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ format, text }),
-    });
-
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
-    if (format === 'download') {
-      console.log('download');
-    } else {
-      return await res.text();
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    throw error;
-  }
-}
-
 async function encode(text, format) {
   if (format === 'download') {
-    await post(text, format);
+    const downloadFormat = getDownloadFormat();
+    await post('download', text, downloadFormat);
   } else {
-    const encoded = await post(text, format);
+    const encoded = await post('preview', text, format);
 
     if (format === 'png' || format === 'svg') {
       previewContentEl.innerHTML = `<img style="width: 50%;" src="${encoded}" alt="encoded image">`;
     }
     if (format === 'txt') {
       const ascii = await getAscii(encoded);
-
       previewContentEl.innerHTML = `<pre>${ascii}</pre>`;
     }
+  }
+}
+
+async function post(type, text, format) {
+  try {
+    const res = await fetch('./src/encode.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ type, format, text }),
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    if (type === 'download') {
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `userCode.${format}`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } else {
+      return await res.text();
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
   }
 }
 
@@ -107,6 +115,10 @@ async function getAscii(encoded) {
 
 function getCurrentView() {
   return document.querySelector('.option.active').id;
+}
+
+function getDownloadFormat() {
+  return document.getElementById('format').value;
 }
 
 // -------------get now date----------------
