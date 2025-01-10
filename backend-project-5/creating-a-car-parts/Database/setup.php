@@ -18,5 +18,6 @@ $result = $mysqli->query("
     status VARCHAR(10)
   );
 ");
+
 if ($result === false) throw new Exception('Could not execute query.');
 else print("Successfully ran all SQL setup queries." . PHP_EOL);
