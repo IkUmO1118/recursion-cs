@@ -16,11 +16,11 @@ class MySQLWrapper extends mysqli
     テストするには、.env設定で誤った情報を入力します。
     */
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    $settings = new Settings();
+    $this->settings = new Settings();
 
-    $username = $username ?? $settings->env('DATABASE_USER');
-    $password = $password ?? $settings->env('DATABASE_USER_PASSWORD');
-    $database = $database ?? $settings->env('DATABASE_NAME');
+    $username = $username ?? $this->settings->env('DATABASE_USER');
+    $password = $password ?? $this->settings->env('DATABASE_USER_PASSWORD');
+    $database = $database ?? $this->settings->env('DATABASE_NAME');
     parent::__construct($hostname, $username, $password, $database, $port, $socket);
   }
   // クエリが問い合わせられるデフォルトのデータベースを取得します。
