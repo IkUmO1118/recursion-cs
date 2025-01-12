@@ -1,19 +1,22 @@
 <?php
 
 namespace Helpers;
+
 use Exceptions\ReadAndParseEnvException;
 
-class Settings{
+class Settings
+{
   const ENV_PATH = '.env';
 
   /**
-  * @throws ReadAndParseEnvException
-  */
+   * @throws ReadAndParseEnvException
+   */
 
-  function env(string $pair): string{
+  function env(string $pair): string
+  {
     $config = parse_ini_file(dirname(__FILE__, 2) . '/' . self::ENV_PATH);
-    
-    if($config === false){
+
+    if ($config === false) {
       throw new ReadAndParseEnvException();
     }
     return $config[$pair];
