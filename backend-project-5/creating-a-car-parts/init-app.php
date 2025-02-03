@@ -8,7 +8,7 @@ use Database\MySQLWrapper;
 
 $opts = getopt('', ['migrate']);
 if (isset($opts['migrate'])) {
-    printf('Database migration enabled.');
+    printf('Database migration enabled.' . PHP_EOL);
 
     include('Database/setup.php');
     printf('Database migration ended.' . PHP_EOL);
