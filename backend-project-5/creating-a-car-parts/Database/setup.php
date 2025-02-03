@@ -53,3 +53,77 @@ if ($result === false) {
 }
 
 print("Successfully ran all SQL setup queries." . PHP_EOL);
+
+function insertCarQuery(
+  string $make,
+  string $model,
+  int $year,
+  string $color,
+  float $price,
+  float $mileage,
+  string $transmission,
+  string $engine,
+  string $status
+): string {
+  return "
+    INSERT INTO cars (make, model, year, color, price, mileage, transmission, engine, status)
+    VALUES ('$make', '$model', $year, '$color', $price, $mileage, '$transmission', '$engine', '$status');
+  ";
+}
+function insertPartQuery(
+  string $name,
+  string $description,
+  float $price,
+  int $quantityInStock
+): string {
+  return "
+    INSERT INTO parts (name, description, price, quantityInStock)
+    VALUES ('$name', '$description', $price, $quantityInStock);
+  ";
+}
+function insertCarPartQuery(
+  int $carID,
+  int $partID,
+  int $quantity
+): string {
+  return "
+    INSERT INTO carPart (carID, partID, quantity)
+    VALUES ($carID, $partID, $quantity);
+  ";
+}
+
+function runQuery(mysqli $mysqli, string $query): void
+{
+  $result = $mysqli->query($query);
+  if ($result === false) {
+    throw new Exception('Could not execute query.');
+  } else {
+    echo "Query executed successfully.\n";
+  }
+}
+runQuery($mysqli, insertCarQuery(
+  make: 'Toyota',
+  model: 'Corolla',
+  year: 2020,
+  color: 'Blue',
+  price: 20000,
+  mileage: 1500,
+  transmission: 'Automatic',
+  engine: 'Gasoline',
+  status: 'Available'
+));
+runQuery($mysqli, insertPartQuery(
+  name: 'Brake Pad',
+  description: 'High Quality Brake Pad',
+  price: 45.99,
+  quantityInStock: 100
+));
+
+runQuery($mysqli, insertCarPartQuery(
+  carID: 1, // 適切なcarIDを設定
+  partID: 1, // 適切なpartIDを設定
+  quantity: 4
+));
+
+echo "Data insertion successful." . PHP_EOL;
+$mysqli->close();
