@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXITSTS postLikes (
+  userID IS NOT NULL,
+  portID IS NOT NULL,
+  PRIMARY KEY (userID, postID),
+  FOREIGN KEY (userID) REFERENCES users(id),
+  FOREIGN KEY (postID) REFERENCES posts(id)
+)
