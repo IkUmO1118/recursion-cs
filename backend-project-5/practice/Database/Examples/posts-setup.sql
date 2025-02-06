@@ -4,5 +4,6 @@ CREATE TABLE IF NOT EXISTS posts (
   content TEXT,
   created_at DATE,
   updated_at DATE,
-  userID INT REFERENCES users(id)
+  userID INT,
+  FOREIGN KEY (userID) REFERENCES users(id)
 )
