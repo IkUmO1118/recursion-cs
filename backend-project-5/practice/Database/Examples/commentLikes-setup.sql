@@ -3,5 +3,5 @@ CREATE TABLE IF NOT EXISTS commentLikes (
   commentID INT NOT NULL,
   PRIMARY KEY (userID, commentID),
   FOREIGN KEY (userID) REFERENCES users(id),
-  FOREIGN KEY (commentID) REFERENCES commnets(id)
+  FOREIGN KEY (commentID) REFERENCES comments(id)
 )

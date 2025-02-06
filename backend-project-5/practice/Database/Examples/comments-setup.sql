@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS commnets (
+CREATE TABLE IF NOT EXISTS comments (
   id INT PRIMARY KEY AUTO_INCREMENT,
   commentText VARCHAR(255),
   created_at DATE,
