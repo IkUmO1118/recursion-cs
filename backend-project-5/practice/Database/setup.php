@@ -38,9 +38,12 @@ $sqlFiles = [
 
 
 $result = $mysqli->query(
-  "CREATE TABLE IF NOT EXISTS tags (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    tagName VARCHAR(50)
+  "CREATE TABLE IF NOT EXISTS postTags (
+    postID INT NOT NULL,
+    tagID INT NOT NULL,
+    PRIMARY KEY (postID, tagID),
+    FOREIGN KEY (postID) REFERENCES posts(id),
+    FOREIGN KEY (tagID) REFERENCES tags(id)
 );"
 );
 if ($result === false) {
