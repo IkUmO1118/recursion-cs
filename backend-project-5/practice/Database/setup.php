@@ -38,13 +38,10 @@ $sqlFiles = [
 
 
 $result = $mysqli->query(
-  "CREATE TABLE IF NOT EXISTS postTags (
-    postID INT NOT NULL,
-    tagID INT NOT NULL,
-    PRIMARY KEY (postID, tagID),
-    FOREIGN KEY (postID) REFERENCES posts(id),
-    FOREIGN KEY (tagID) REFERENCES tags(id)
-);"
+  "ALTER TABLE posts
+    ADD COLUMN categoryID INT,
+    ADD CONSTRAINT fk_posts_category FOREIGN KEY (categoryID) REFERENCES categories(id)
+;"
 );
 if ($result === false) {
   throw new Exception("Could not execute query" . $mysqli->error);

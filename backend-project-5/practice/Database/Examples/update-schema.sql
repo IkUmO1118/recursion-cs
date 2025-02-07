@@ -39,7 +39,9 @@ CREATE TABLE IF NOT EXISTS postTags (
 
 -- Postテーブルの変更（CategoryIDを削除）
 ALTER TABLE Post
-DROP COLUMN CategoryID;
+ADD COLUMN categoryID INT,
+ADD CONSTRAINT fk_posts_category FOREIGN KEY (categoryID) REFERENCES categories(id)
+;
 
 -- CommentLikeの変更（commentIDを削除し、postIDを追加）
 ALTER TABLE CommentLike
