@@ -44,9 +44,9 @@ ADD CONSTRAINT fk_posts_category FOREIGN KEY (categoryID) REFERENCES categories(
 ;
 
 -- CommentLikeの変更（commentIDを削除し、postIDを追加）
-ALTER TABLE CommentLike
+ALTER TABLE commentLikes
 DROP COLUMN commentID;
 
-ALTER TABLE CommentLike
+ALTER TABLE commentLikes
 ADD COLUMN postID INT,
-ADD FOREIGN KEY (postID) REFERENCES Post(postID);
+ADD CONSTRAINT fk_posts_commentLike FOREIGN KEY (postID) REFERENCES posts(id);

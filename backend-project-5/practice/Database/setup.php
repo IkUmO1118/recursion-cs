@@ -36,12 +36,17 @@ $sqlFiles = [
 // }
 // echo "Successfully ran all insert SQL queries." . PHP_EOL;
 
+$result = $mysqli->query(
+  "ALTER TABLE commentLikes
+  DROP FOREIGN KEY commentLikes_ibfk_2;"
+);
+if ($result === false) {
+  throw new Exception("Could not execute query to drop foreign key: " . $mysqli->error);
+}
 
 $result = $mysqli->query(
-  "ALTER TABLE posts
-    ADD COLUMN categoryID INT,
-    ADD CONSTRAINT fk_posts_category FOREIGN KEY (categoryID) REFERENCES categories(id)
-;"
+  "ALTER TABLE commentLikes
+  DROP COLUMN commentID;"
 );
 if ($result === false) {
   throw new Exception("Could not execute query" . $mysqli->error);
