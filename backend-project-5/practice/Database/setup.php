@@ -37,11 +37,15 @@ $sqlFiles = [
 // echo "Successfully ran all insert SQL queries." . PHP_EOL;
 
 
-$result = $mysqli->query("ALTER TABLE users
-ADD COLUMN subscription VARCHAR(255),
-ADD COLUMN subscription_status VARCHAR(255),
-ADD COLUMN subscriptionCreatedAt DATE,
-ADD COLUMN subscriptionEndsAt DATE;");
+$result = $mysqli->query(
+  "CREATE TABLE userSettings (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    userID INT,
+    metaKey VARCHAR(50),
+    metaValue VARCHAR(50),
+    FOREIGN KEY (userID) REFERENCES users(id)
+);"
+);
 if ($result === false) {
   throw new Exception("Could not execute query" . $mysqli->error);
 }

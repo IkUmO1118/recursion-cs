@@ -9,12 +9,12 @@ ADD COLUMN subscriptionCreatedAt DATE,
 ADD COLUMN subscriptionEndsAt DATE;
 
 -- UserSettingテーブルの追加
-CREATE TABLE UserSetting (
-    entryid INT PRIMARY KEY,
+CREATE TABLE userSettings (
+    id INT PRIMARY KEY AUTO_INCREMENT,
     userID INT,
     metaKey STRING,
     metaValue STRING,
-    FOREIGN KEY (userID) REFERENCES User(userID)
+    FOREIGN KEY (userID) REFERENCES users(userID)
 );
 
 -- Categoryテーブルの削除
