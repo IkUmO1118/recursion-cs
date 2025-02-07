@@ -37,7 +37,11 @@ $sqlFiles = [
 // echo "Successfully ran all insert SQL queries." . PHP_EOL;
 
 
-$result = $mysqli->query("ALTER TABLE users DROP COLUMN email_confirmed_at;");
+$result = $mysqli->query("ALTER TABLE users
+ADD COLUMN subscription VARCHAR(255),
+ADD COLUMN subscription_status VARCHAR(255),
+ADD COLUMN subscriptionCreatedAt DATE,
+ADD COLUMN subscriptionEndsAt DATE;");
 if ($result === false) {
   throw new Exception("Could not execute query" . $mysqli->error);
 }

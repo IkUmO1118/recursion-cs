@@ -3,10 +3,10 @@ ALTER TABLE User
 DROP COLUMN email_confirmed_at;
 
 ALTER TABLE User
-ADD COLUMN subscription STRING,
-ADD COLUMN subscription_status STRING,
-ADD COLUMN subscriptionCreatedAt DATETIME,
-ADD COLUMN subscriptionEndsAt DATETIME;
+ADD COLUMN subscription VARCHAR(255),
+ADD COLUMN subscription_status VARCHAR(255),
+ADD COLUMN subscriptionCreatedAt DATE,
+ADD COLUMN subscriptionEndsAt DATE;
 
 -- UserSettingテーブルの追加
 CREATE TABLE UserSetting (
