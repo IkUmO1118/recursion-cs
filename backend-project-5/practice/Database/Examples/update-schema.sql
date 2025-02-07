@@ -9,7 +9,7 @@ ADD COLUMN subscriptionCreatedAt DATE,
 ADD COLUMN subscriptionEndsAt DATE;
 
 -- UserSettingテーブルの追加
-CREATE TABLE userSettings (
+CREATE TABLE IF NOT EXISTS userSettings (
     id INT PRIMARY KEY AUTO_INCREMENT,
     userID INT,
     metaKey STRING,
@@ -17,14 +17,25 @@ CREATE TABLE userSettings (
     FOREIGN KEY (userID) REFERENCES users(userID)
 );
 
--- Categoryテーブルの削除
-DROP TABLE IF EXISTS Category;
+-- Categoryテーブルの追加
+CREATE TABLE IF NOT EXISTS categories (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    categoryName VARCHAR(50)
+)
 
--- Tagテーブルの削除
-DROP TABLE IF EXISTS Tag;
+-- Tagテーブルの追加
+CREATE TABLE IF NOT EXISTS tags (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tagName VARCHAR(50)
+)
 
--- PostTag（中間テーブル）の削除
-DROP TABLE IF EXISTS PostTag;
+-- PostTag（中間テーブル）の追加
+CREATE TABLE IF NOT EXISTS postTags (
+    postID INT,
+    tagID INT,
+    FOREIGN KEY (postID) REFERENCES posts(id),
+    FOREIGN KEY (tagID) REFERENCES tags(id)
+)
 
 -- Postテーブルの変更（CategoryIDを削除）
 ALTER TABLE Post

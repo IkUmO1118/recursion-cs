@@ -38,12 +38,9 @@ $sqlFiles = [
 
 
 $result = $mysqli->query(
-  "CREATE TABLE userSettings (
+  "CREATE TABLE IF NOT EXISTS tags (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    userID INT,
-    metaKey VARCHAR(50),
-    metaValue VARCHAR(50),
-    FOREIGN KEY (userID) REFERENCES users(id)
+    tagName VARCHAR(50)
 );"
 );
 if ($result === false) {
