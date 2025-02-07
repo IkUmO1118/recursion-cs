@@ -12,13 +12,13 @@ $sqlFiles = [
   __DIR__ . '/Examples/commentLikes-setup.sql'
 ];
 
-// foreach ($sqlFiles as $filePath) {
-//   $result = $mysqli->query(file_get_contents($filePath));
-//   if ($result === false) {
-//     throw new Exception("Could not execute query" . $mysqli->error);
-//   }
-// }
-// echo "Successfully ran all SQL setup queries." . PHP_EOL;
+foreach ($sqlFiles as $filePath) {
+  $result = $mysqli->query(file_get_contents($filePath));
+  if ($result === false) {
+    throw new Exception("Could not execute query" . $mysqli->error);
+  }
+}
+echo "Successfully ran all SQL setup queries." . PHP_EOL;
 
 // $insertData = [
 //   "INSERT INTO users (username, email, password, email_confirmed_at, created_at, updated_at) VALUES ('user1', 'test@example.com', 'password', 'test@example.com', NOW(), NOW());",
@@ -35,13 +35,3 @@ $sqlFiles = [
 //   }
 // }
 // echo "Successfully ran all insert SQL queries." . PHP_EOL;
-
-$result = $mysqli->query(
-  "ALTER TABLE commentLikes
-    ADD COLUMN postID INT,
-    ADD CONSTRAINT fk_posts_commentLike FOREIGN KEY (postID) REFERENCES posts(id);"
-);
-if ($result === false) {
-  throw new Exception("Could not execute query" . $mysqli->error);
-}
-echo "Successfully ran all SQL setup queries." . PHP_EOL;

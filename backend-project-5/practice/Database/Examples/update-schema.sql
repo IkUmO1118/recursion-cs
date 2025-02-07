@@ -44,6 +44,10 @@ ADD CONSTRAINT fk_posts_category FOREIGN KEY (categoryID) REFERENCES categories(
 ;
 
 -- CommentLikeの変更（commentIDを削除し、postIDを追加）
+-- FKに設定されているカラムを削除する際は、まずFKを削除する必要がある
+ALTER TABLE commentLikes
+DROP FOREIGN KEY fk_comment_commentLIkes;
+
 ALTER TABLE commentLikes
 DROP COLUMN commentID;
 
