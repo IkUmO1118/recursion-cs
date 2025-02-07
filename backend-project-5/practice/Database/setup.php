@@ -38,15 +38,8 @@ $sqlFiles = [
 
 $result = $mysqli->query(
   "ALTER TABLE commentLikes
-  DROP FOREIGN KEY commentLikes_ibfk_2;"
-);
-if ($result === false) {
-  throw new Exception("Could not execute query to drop foreign key: " . $mysqli->error);
-}
-
-$result = $mysqli->query(
-  "ALTER TABLE commentLikes
-  DROP COLUMN commentID;"
+    ADD COLUMN postID INT,
+    ADD CONSTRAINT fk_posts_commentLike FOREIGN KEY (postID) REFERENCES posts(id);"
 );
 if ($result === false) {
   throw new Exception("Could not execute query" . $mysqli->error);

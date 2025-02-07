@@ -48,5 +48,5 @@ ALTER TABLE commentLikes
 DROP COLUMN commentID;
 
 ALTER TABLE commentLikes
-ADD COLUMN postID INT,
+ADD COLUMN postID INT NOT NULL,
 ADD CONSTRAINT fk_posts_commentLike FOREIGN KEY (postID) REFERENCES posts(id);
