@@ -1,6 +1,9 @@
 <?php
 
+namespace Database;
+
 use Database\MySQLWrapper;
+use Exception;
 
 $mysqli = new MySQLWrapper();
 
