@@ -5,6 +5,7 @@ spl_autoload_register();
 require __DIR__ . '/vendor/autoload.php';
 
 $commands = include "Commands/registry.php";
+
 // 第2引数は実行するコマンド
 $inputCommand = $argv[1];
 // PHPでそれらをインスタンス化できるすべてのコマンドクラス名を通過します。
