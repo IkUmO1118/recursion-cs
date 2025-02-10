@@ -4,6 +4,8 @@ namespace Commands;
 
 class Argument
 {
+  const OPTIONAL = 'optional';
+
   private string $argument;
   private string $description = '';
   private bool $required = true;
