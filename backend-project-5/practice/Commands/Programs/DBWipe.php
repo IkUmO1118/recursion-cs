@@ -4,6 +4,7 @@ namespace Commands\Programs;
 
 use Commands\AbstractCommand;
 use Commands\Argument;
+use Helpers\Settings;
 
 class DBWipe extends AbstractCommand
 {
@@ -23,9 +24,16 @@ class DBWipe extends AbstractCommand
   {
     $backup = $this->getArgumentValue('backup');
 
+    $settings = new Settings();
+
+    $username = $settings->env('DATABASE_USER');
+    $password = $settings->env('DATABASE_USER_PASSWORD');
+    $database = $settings->env('DATABASE_NAME');
+
     if ($backup) {
       // バックアップを作成
-      exec('mysqldump -u username -p dbname > backup.sql', $output, $return_var);
+      $backupCommand = sprintf('mysqldump -u %s -p%s %s > backup.sql', $username, $password, $database);
+      exec($backupCommand, $output, $return_var);
       if ($return_var !== 0) {
         echo "Failed to create backup.\n";
         return $return_var;
@@ -34,7 +42,8 @@ class DBWipe extends AbstractCommand
     }
 
     // データベースをワイプ
-    exec('mysql -u username -p -e "DROP DATABASE dbname; CREATE DATABASE dbname;"', $output, $return_var);
+    $wipeCommand = sprintf('mysql -u %s -p%s -e "DROP DATABASE %s; CREATE DATABASE %s;"', $username, $password, $database, $database);
+    exec($wipeCommand, $output, $return_var);
     if ($return_var !== 0) {
       echo "Failed to wipe the database.\n";
       return $return_var;
