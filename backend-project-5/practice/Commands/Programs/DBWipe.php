@@ -17,12 +17,17 @@ class DBWipe extends AbstractCommand
         ->description('Create a backup before wiping the database')
         ->required(false)
         ->allowAsShort(true),
+      (new Argument('restore'))
+        ->description('Restore the database from a backup file')
+        ->required(false)
+        ->allowAsShort(true),
     ];
   }
   // TODO: 実行コードを記述してください。
   public function execute(): int
   {
     $backup = $this->getArgumentValue('backup');
+    $restore = $this->getArgumentValue('restore');
 
     $settings = new Settings();
 
@@ -39,6 +44,18 @@ class DBWipe extends AbstractCommand
         return $return_var;
       }
       echo "Backup created successfully.\n";
+    }
+
+    if ($restore) {
+      // データベースをリストア
+      $restoreCommand = sprintf('mysql -u %s -p%s %s < backup.sql', $username, $password, $database);
+      exec($restoreCommand, $output, $return_var);
+      if ($return_var !== 0) {
+        echo "Failed to restore the database.\n";
+        return $return_var;
+      }
+      echo "Database restored successfully.\n";
+      return 0;
     }
 
     // データベースをワイプ
