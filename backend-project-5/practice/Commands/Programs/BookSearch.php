@@ -79,7 +79,8 @@ class BookSearch extends AbstractCommand
 
   private function fetchBookData(?string $title, ?string $isbn): ?array
   {
-    $query = $isbn ? "isbn:$isbn" : "title:$title";
+    // $query = $isbn ? "isbn:$isbn" : "title:$title";
+    $query = $isbn ? "isbn=" . urlencode($isbn) : "title=" . urlencode($title);
     $url = "https://openlibrary.org/search.json?$query";
     $response = file_get_contents($url);
     $data = json_decode($response, true);

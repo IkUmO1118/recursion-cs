@@ -6,4 +6,5 @@ return [
   Programs\Migrate::class,
   Programs\CodeGeneration::class,
   Programs\DBWipe::class,
+  Programs\BookSearch::class
 ];
