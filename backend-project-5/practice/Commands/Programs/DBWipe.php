@@ -36,37 +36,58 @@ class DBWipe extends AbstractCommand
     $database = $settings->env('DATABASE_NAME');
 
     if ($backup) {
-      // バックアップを作成
-      $backupCommand = sprintf('mysqldump -u %s -p%s %s > backup.sql', $username, $password, $database);
-      exec($backupCommand, $output, $return_var);
-      if ($return_var !== 0) {
-        echo "Failed to create backup.\n";
-        return $return_var;
+      if (!$this->backupDatabase($username, $password, $database)) {
+        return 1;
       }
-      echo "Backup created successfully.\n";
     }
 
     if ($restore) {
-      // データベースをリストア
-      $restoreCommand = sprintf('mysql -u %s -p%s %s < backup.sql', $username, $password, $database);
-      exec($restoreCommand, $output, $return_var);
-      if ($return_var !== 0) {
-        echo "Failed to restore the database.\n";
-        return $return_var;
+      if (!$this->restoreDatabase($username, $password, $database)) {
+        return 1;
       }
-      echo "Database restored successfully.\n";
       return 0;
     }
 
-    // データベースをワイプ
+    if (!$this->wipeDatabase($username, $password, $database)) {
+      return 1;
+    }
+
+    return 0;
+  }
+
+  private function backupDatabase(string $username, string $password, string $database): bool
+  {
+    $backupCommand = sprintf('mysqldump -u %s -p%s %s > backup.sql', $username, $password, $database);
+    exec($backupCommand, $output, $return_var);
+    if ($return_var !== 0) {
+      echo "Failed to create backup.\n";
+      return false;
+    }
+    echo "Backup created successfully.\n";
+    return true;
+  }
+
+  private function restoreDatabase(string $username, string $password, string $database): bool
+  {
+    $restoreCommand = sprintf('mysql -u %s -p%s %s < backup.sql', $username, $password, $database);
+    exec($restoreCommand, $output, $return_var);
+    if ($return_var !== 0) {
+      echo "Failed to restore the database.\n";
+      return false;
+    }
+    echo "Database restored successfully.\n";
+    return true;
+  }
+
+  private function wipeDatabase(string $username, string $password, string $database): bool
+  {
     $wipeCommand = sprintf('mysql -u %s -p%s -e "DROP DATABASE %s; CREATE DATABASE %s;"', $username, $password, $database, $database);
     exec($wipeCommand, $output, $return_var);
     if ($return_var !== 0) {
       echo "Failed to wipe the database.\n";
-      return $return_var;
+      return false;
     }
-
     echo "Database wiped successfully.\n";
-    return 0;
+    return true;
   }
 }
