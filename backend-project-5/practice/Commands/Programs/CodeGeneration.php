@@ -3,6 +3,7 @@
 namespace Commands\Programs;
 
 use Commands\AbstractCommand;
+use Commands\Argument;
 
 class CodeGeneration extends AbstractCommand
 {
@@ -14,69 +15,68 @@ class CodeGeneration extends AbstractCommand
   // 引数を割り当て
   public static function getArguments(): array
   {
-    return [];
+    return [
+      (new Argument('name'))->description('Name of the file that is to be generated.')->required(false),
+    ];
   }
 
   public function execute(): int
   {
-    $commandName = $this->getCommandValue();
+    $codeGenType = $this->getCommandValue();
+    $this->log('Generating code for.......' . $codeGenType);
 
-    if (!$commandName) {
-      echo "Please provide a command name.\n";
-      return 1;
+    if ($codeGenType === 'migration') {
+      $migrationName = $this->getArgumentValue('name');
+      $this->generateMigrationFile($migrationName);
     }
 
-    $this->generateCommandFile($commandName);
-    $this->updateRegistry($commandName);
-
-    echo "Command $commandName has been generated and added to the registry.\n";
     return 0;
   }
 
-  private function generateCommandFile(string $commandName): void
+  private function generateMigrationFile(string $migrationName): void
   {
-    $template = <<<'EOD'
-      <?php
+    $filename = sprintf(
+      '%s_%s_%s.php',
+      date('Y-m-d'),
+      time(),
+      $migrationName
+    );
 
-      namespace Commands\Programs;
+    $migrationContent = $this->getMigrationContent($migrationName);
 
-      use Commands\AbstractCommand;
-      use Commands\Argument;
+    // 移行ファイルを保存するパスを指定します
+    $path = sprintf("%s/../../Database/Migrations/%s", __DIR__, $filename);
 
-      class CommandName extends AbstractCommand
-      {
-        // TODO: エイリアスを設定してください。
-        protected static ?string $alias = '{INSERT COMMAND HERE}';
-
-        // TODO: 引数を設定してください。
-        public static function getArguments(): array
-        {
-          return [];
-        }
-
-        // TODO: 実行コードを記述してください。
-        public function execute(): int
-        {
-          return 0;
-        }
-      }
-      EOD;
-
-    $content = str_replace('CommandName', $commandName, $template);
-    $content = str_replace('{INSERT COMMAND HERE}', strtolower($commandName), $content);
-
-    $filePath = __DIR__ . "/$commandName.php";
-    file_put_contents($filePath, $content);
+    file_put_contents($path, $migrationContent);
+    $this->log("Migration file {$filename} has been generated!");
   }
 
-  private function updateRegistry(string $commandName): void
+  private function getMigrationContent(string $migrationName): string
   {
-    $registryPath = __DIR__ . '/../registry.php';
-    $registryContent = file_get_contents($registryPath);
+    $className = $this->pascalCase($migrationName);
 
-    $newEntry = "  Programs\\$commandName::class,";
-    $updatedContent = str_replace('];', "$newEntry\n];", $registryContent);
+    return <<<MIGRATION
+    <?php
+    namespace Database\Migrations;
+    use Database\SchemaMigration;
+    class {$className} implements SchemaMigration
+    {
+    public function up(): array
+    {
+    // マイグレーションロジックをここに追加してください
+    return [];
+    }
+    public function down(): array
+    {
+    // ロールバックロジックを追加してください
+    return [];
+    }
+    }
+    MIGRATION;
+  }
 
-    file_put_contents($registryPath, $updatedContent);
+  private function pascalCase(string $string): string
+  {
+    return str_replace(' ', '', ucwords(str_replace('_', ' ', $string)));
   }
 }

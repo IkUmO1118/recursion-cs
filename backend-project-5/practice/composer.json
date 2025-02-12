@@ -6,7 +6,8 @@
       "Exceptions\\": "Exceptions",
       "Helpers\\": "Helpers",
       "Commands\\": "Commands",
-      "Programs\\": "Commands/Programs"
+      "Programs\\": "Commands/Programs",
+      "Migrations\\": "Database/Migrations"
     }
   }
 }

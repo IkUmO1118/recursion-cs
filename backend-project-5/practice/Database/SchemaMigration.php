@@ -1,7 +1,9 @@
 <?php
 
+namespace Database;
+
 interface SchemaMigration
 {
   public function up(): array;
-  public function dowm(): array;
+  public function down(): array;
 }
