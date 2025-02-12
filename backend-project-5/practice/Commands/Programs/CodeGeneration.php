@@ -3,7 +3,6 @@
 namespace Commands\Programs;
 
 use Commands\AbstractCommand;
-use Commands\Argument;
 
 class CodeGeneration extends AbstractCommand
 {
