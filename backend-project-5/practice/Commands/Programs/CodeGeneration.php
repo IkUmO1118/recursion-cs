@@ -12,7 +12,6 @@ class CodeGeneration extends AbstractCommand
   protected static bool $requiredCommandValue = true;
 
   // 引数を割り当て
-  // 引数を割り当て
   public static function getArguments(): array
   {
     return [
