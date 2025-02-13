@@ -9,7 +9,7 @@ class CreatePostTable1 implements SchemaMigration
   public function up(): array
   {
     return [
-      "CREATE TABLE posts (
+      "CREATE TABLE IF NOT EXISTS posts (
         id INT PRIMARY KEY AUTO_INCREMENT,
         title VARCHAR(255) NOT NULL,
         content TEXT NOT NULL,
