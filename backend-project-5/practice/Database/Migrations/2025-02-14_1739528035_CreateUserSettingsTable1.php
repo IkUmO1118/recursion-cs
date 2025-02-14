@@ -12,10 +12,10 @@ class CreateUserSettingsTable1 implements SchemaMigration
     return [
       "CREATE TABLE IF NOT EXISTS userSettings (
         id INT PRIMARY KEY AUTO_INCREMENT,
-        userID INT,
-        metaKey STRING,
-        metaValue STRING,
-        FOREIGN KEY (userID) REFERENCES users(userID)
+        metaKey VARCHAR(255) NOT NULL,
+        metaValue VARCHAR(255) NOT NULL,
+        user_id BIGINT,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
       )"
     ];
   }
