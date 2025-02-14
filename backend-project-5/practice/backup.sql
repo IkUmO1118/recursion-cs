@@ -16,6 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `cache`
+--
+
+DROP TABLE IF EXISTS `cache`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cache` (
+  `key` varchar(255) NOT NULL,
+  `data` text NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cache`
+--
+
+LOCK TABLES `cache` WRITE;
+/*!40000 ALTER TABLE `cache` DISABLE KEYS */;
+INSERT INTO `cache` VALUES ('book-search-title-cee9cf2d30c165db805e581a6f58c9aa','{\"author_key\":[\"OL27349A\"],\"author_name\":[\"F. Scott Fitzgerald\"],\"cover_edition_key\":\"OL22570129M\",\"cover_i\":10590366,\"edition_count\":1174,\"first_publish_year\":1920,\"has_fulltext\":true,\"ia\":[\"in.ernet.dli.2015.184960\",\"el_gran_gatsby_edincr\",\"greatgatsby0000fitz_c5u7\",\"elgrangatsby0000fitz_w6o4\",\"gatsby0000fitz\",\"liaobuqidegaicib0000fitz_p7x9\",\"isbn_9783257236927\",\"elgrangatsby0000unse_x0a7\",\"liaobuqidegaicib0000meif\",\"greatgatsbyfitzg0000fsco\",\"liaobuqidegaizib0000fitz\",\"greatgatsby0000fitz_u2y5\",\"isbn_9780582329164\",\"greatgatsby0039fitz\",\"greatgatsby1995fitz\",\"greatgatsby0000fitz_q1i5\",\"greatgatsby0000fitz_e1p9\",\"greatgatsby1953fitz\",\"elgrangatsby0000fitz\",\"liaobuqidegaicib0000fitz\",\"greatgatsbyfitzrich\",\"wielkigatsby00fitz\",\"greatgatsby0000fitz_t1j1\",\"greatgatsbyreiss00fitz\",\"greatgatsby00fitz\",\"dahengxiaozhuan0000fitz\",\"elgrangatsby0000fitz_o1j9\",\"greatgatsby0000fitz_y7h1\",\"greatgatsby0000fitz_u2h3\",\"greatgatsby0000fitz_o4u5\",\"greatgatsbyfitz00fitz\",\"elgrangatsby0000fsco_j8u1\",\"elgrangatsby0000fitz_y8k4\",\"elgrangatsby0000fitz_w0g3\",\"greatgatsbywiseh0000fitz\",\"gatsbylemagnifiq0000fitz\",\"greatgatsby0000fitz_d0s0\",\"elgrangatsby0000fsco\",\"greatgatsby00fitzrich\",\"greatgatsby0000fitz_k0u5\",\"greatgat00fitz\",\"greatgat00fitz\",\"isbn_B0007DQHPM\",\"greatgatsb00fitz\",\"isbn_9780023957109\",\"greatgatsby000fitz\",\"greatgatsbyfacsi0000fitz\",\"dergroegatsby00fitz_590\",\"dergroegatsbyrom00fitz\",\"greatgatsbywords00fitz\"],\"ia_collection_s\":\"JaiGyan;americana;americanuniversity-ol;bannedbooks;belmont-ol;binghamton-ol;booksbylanguage;booksbylanguage_danish;bostonuniversitylibraries-ol;cnusd-ol;cua-ol;dartmouthlibrary-ol;delawarecountydistrictlibrary;delawarecountydistrictlibrary-ol;denverpubliclibrary-ol;digitallibraryindia;drakeuniversity-ol;hamiltonpubliclibrary-ol;inlibrary;internetarchivebooks;johnshopkins-ol;kalamazoocollege-ol;library_of_atlantis;marymount-ol;miltonpubliclibrary-ol;occidentalcollegelibrary-ol;openlibrary-d-ol;popularchinesebooks;printdisabled;randolph-macon-college-ol;riceuniversity-ol;rochester-ol;salisburyfreelibrary-ol;spokanepubliclibrary-ol;stmaryscountylibrary;the-claremont-colleges-ol;tulsacc-ol;udc-ol;unb-ol;uni-ol;universityofcoloradoboulder-ol;universityofoklahoma-ol;universityofthewest-ol;uslprototype;wilsoncollege-ol;worthingtonlibraries-ol\",\"key\":\"/works/OL468431W\",\"language\":[\"eng\",\"por\",\"pol\",\"spa\",\"ind\",\"rum\",\"ger\",\"chi\",\"ita\",\"kor\",\"fre\",\"dan\",\"heb\",\"dut\",\"jpn\",\"swe\"],\"lending_edition_s\":\"OL26441901M\",\"lending_identifier_s\":\"in.ernet.dli.2015.184960\",\"public_scan_b\":true,\"title\":\"The Great Gatsby\",\"id_project_gutenberg\":[\"64317\"]}','2025-02-10 08:58:32');
+/*!40000 ALTER TABLE `cache` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `categories`
 --
 
@@ -95,6 +120,30 @@ LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
 INSERT INTO `comments` VALUES (1,'Comment 1','2025-02-06','2025-02-06',1,1);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `migrations` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `filename` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `migrations`
+--
+
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (1,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-12_1739333405_CreateUserTable1.php'),(2,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-13_1739415037_CreatePostTable1.php');
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -274,4 +323,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-02-10 11:50:27
+-- Dump completed on 2025-02-14 12:48:12
