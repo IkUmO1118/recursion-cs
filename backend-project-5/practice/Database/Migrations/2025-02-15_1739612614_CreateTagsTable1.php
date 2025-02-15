@@ -4,15 +4,15 @@ namespace Database\Migrations;
 
 use Database\SchemaMigration;
 
-class CreateCategoriesTable implements SchemaMigration
+class CreateTagsTable1 implements SchemaMigration
 {
   public function up(): array
   {
     // マイグレーションロジックをここに追加してください
     return [
-      "CREATE TABLE IF NOT EXISTS categories (
+      "CREATE TABLE IF NOT EXISTS tags (
         id INT PRIMARY KEY AUTO_INCREMENT,
-        categoryName VARCHAR(50)
+        tagName VARCHAR(255)
       )"
     ];
   }
@@ -20,7 +20,7 @@ class CreateCategoriesTable implements SchemaMigration
   {
     // ロールバックロジックを追加してください
     return [
-      "DROP TABLE categories"
+      "DROP TABLE tags"
     ];
   }
 }
