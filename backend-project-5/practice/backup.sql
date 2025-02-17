@@ -16,29 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `categories`
---
-
-DROP TABLE IF EXISTS `categories`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `categories` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `categoryName` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `categories`
---
-
-LOCK TABLES `categories` WRITE;
-/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `commentLikes`
 --
 
@@ -106,7 +83,7 @@ CREATE TABLE `migrations` (
   `id` int NOT NULL AUTO_INCREMENT,
   `filename` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,7 +92,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-12_1739333405_CreateUserTable1.php'),(2,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-13_1739415037_CreatePostTable1.php'),(3,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-14_1739528035_CreateUserSettingsTable1.php'),(4,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-14_1739532185_CreatePostLikesTable1.php'),(6,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-15_1739611759_CreateCategoriesTable1.php'),(7,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-15_1739612614_CreateTagsTable1.php'),(8,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-15_1739612750_CreatePostTagsTable1.php'),(9,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-15_1739613835_CreateCommentsTable1.php'),(10,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-15_1739614024_CreateCommentLikesTable1.php'),(12,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-16_1739674475_UpdateUserTable1.php'),(13,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-16_1739675476_UpdatePostTable1.php');
+INSERT INTO `migrations` VALUES (1,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-12_1739333405_CreateUserTable1.php'),(2,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-13_1739415037_CreatePostTable1.php'),(3,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-14_1739528035_CreateUserSettingsTable1.php'),(4,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-14_1739532185_CreatePostLikesTable1.php'),(6,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-15_1739611759_CreateCategoriesTable1.php'),(7,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-15_1739612614_CreateTagsTable1.php'),(8,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-15_1739612750_CreatePostTagsTable1.php'),(9,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-15_1739613835_CreateCommentsTable1.php'),(10,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-15_1739614024_CreateCommentLikesTable1.php'),(12,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-16_1739674475_UpdateUserTable1.php'),(13,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-16_1739675476_UpdatePostTable1.php'),(14,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-17_1739789845_UpdateUserTable2.php'),(15,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-17_1739790075_CreateSubscriptionTable1.php'),(16,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-17_1739793693_UpdatePostTable2.php'),(17,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-17_1739793867_DeleteCategoryTable1.php'),(18,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-17_1739794446_CreateTaxonomyTable1.php'),(19,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-17_1739794901_DeletePostTagTable1.php'),(20,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-17_1739795062_DeleteTagTable1.php'),(21,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-17_1739795467_CreateTaxonomyTermTable1.php'),(22,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-17_1739796159_CreatePostTaxonomyTable1.php'),(23,'/home/ikumo1118/web/recursion-cs/backend-project-5/practice/Commands/Programs/../../Database/Migrations/2025-02-17_1739797238_UpdateTaxonomyTable.php');
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,29 +123,31 @@ LOCK TABLES `postLikes` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `postTags`
+-- Table structure for table `postTaxonomies`
 --
 
-DROP TABLE IF EXISTS `postTags`;
+DROP TABLE IF EXISTS `postTaxonomies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `postTags` (
-  `post_id` int NOT NULL,
-  `tag_id` int NOT NULL,
-  PRIMARY KEY (`post_id`,`tag_id`),
-  KEY `fk_postTags_tags` (`tag_id`),
-  CONSTRAINT `fk_postTags_posts` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`),
-  CONSTRAINT `fk_postTags_tags` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`)
+CREATE TABLE `postTaxonomies` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `post_id` int DEFAULT NULL,
+  `taxonomy_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_postTaxonomies_posts` (`post_id`),
+  KEY `fk_postTaxonomies_taxonomyTerms` (`taxonomy_id`),
+  CONSTRAINT `fk_postTaxonomies_posts` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`),
+  CONSTRAINT `fk_postTaxonomies_taxonomyTerms` FOREIGN KEY (`taxonomy_id`) REFERENCES `taxonomyTerms` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `postTags`
+-- Dumping data for table `postTaxonomies`
 --
 
-LOCK TABLES `postTags` WRITE;
-/*!40000 ALTER TABLE `postTags` DISABLE KEYS */;
-/*!40000 ALTER TABLE `postTags` ENABLE KEYS */;
+LOCK TABLES `postTaxonomies` WRITE;
+/*!40000 ALTER TABLE `postTaxonomies` DISABLE KEYS */;
+/*!40000 ALTER TABLE `postTaxonomies` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -185,11 +164,8 @@ CREATE TABLE `posts` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` bigint DEFAULT NULL,
-  `category_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `fk_posts_category` (`category_id`),
-  CONSTRAINT `fk_posts_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
   CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -204,26 +180,84 @@ LOCK TABLES `posts` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tags`
+-- Table structure for table `subscriptions`
 --
 
-DROP TABLE IF EXISTS `tags`;
+DROP TABLE IF EXISTS `subscriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tags` (
+CREATE TABLE `subscriptions` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `tagName` varchar(255) DEFAULT NULL,
+  `subscription` varchar(255) DEFAULT NULL,
+  `subscription_status` varchar(255) DEFAULT NULL,
+  `subscriptionCreatedAt` datetime DEFAULT NULL,
+  `subscriptionEndsAt` datetime DEFAULT NULL,
+  `user_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `subscriptions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `subscriptions`
+--
+
+LOCK TABLES `subscriptions` WRITE;
+/*!40000 ALTER TABLE `subscriptions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `subscriptions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `taxonomies`
+--
+
+DROP TABLE IF EXISTS `taxonomies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `taxonomies` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `taxonomyName` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tags`
+-- Dumping data for table `taxonomies`
 --
 
-LOCK TABLES `tags` WRITE;
-/*!40000 ALTER TABLE `tags` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tags` ENABLE KEYS */;
+LOCK TABLES `taxonomies` WRITE;
+/*!40000 ALTER TABLE `taxonomies` DISABLE KEYS */;
+/*!40000 ALTER TABLE `taxonomies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `taxonomyTerms`
+--
+
+DROP TABLE IF EXISTS `taxonomyTerms`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `taxonomyTerms` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `taxonomyTermName` varchar(255) NOT NULL,
+  `taxonomyType_id` int DEFAULT NULL,
+  `description` varchar(255) NOT NULL,
+  `parentTaxonomyTerm` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_taxonomyType_id` (`taxonomyType_id`),
+  CONSTRAINT `fk_taxonomyType_id` FOREIGN KEY (`taxonomyType_id`) REFERENCES `taxonomies` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `taxonomyTerms`
+--
+
+LOCK TABLES `taxonomyTerms` WRITE;
+/*!40000 ALTER TABLE `taxonomyTerms` DISABLE KEYS */;
+/*!40000 ALTER TABLE `taxonomyTerms` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -267,10 +301,6 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `subscription` varchar(255) DEFAULT NULL,
-  `subscription_status` varchar(255) DEFAULT NULL,
-  `subscriptionCreatedAt` datetime DEFAULT NULL,
-  `subscriptionEndsAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -294,4 +324,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-02-16 12:18:05
+-- Dump completed on 2025-02-17 22:03:10
