@@ -7,4 +7,5 @@ return [
   Programs\CodeGeneration::class,
   Programs\DBWipe::class,
   Programs\BookSearch::class,
+  Programs\StateMigrate::class,
 ];
