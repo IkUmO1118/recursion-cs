@@ -19,8 +19,35 @@ $studentsData = [
   ['Isaac', 20, 'Economics'],
   ['Jack', 24, 'Philosophy']
 ];
+$updates = [
+  ['Alice', 'Physics'],
+  ['Bob', 'Art History'],
+  ['Charlie', 'Philosophy'],
+  ['David', 'Economics']
+];
+$studentsToDelete = ['Alice', 'Bob', 'Charlie'];
 
+// データの挿入
 foreach ($studentsData as $student) {
   $insertQuery = "INSERT INTO students (name, age, major) VALUES ('$student[0]', $student[1], '$student[2]')";
   $mysqli->query($insertQuery);
+}
+
+// データの更新
+foreach ($updates as $update) {
+  $updateQuery = "UPDATE students SET major='$update[1]' WHERE name='$update[0]'";
+  $mysqli->query($updateQuery);
+}
+
+// データの削除
+foreach ($studentsToDelete as $studentName) {
+  $deleteQuery = "DELETE FROM students WHERE name='$studentName'";
+  $mysqli->query($deleteQuery);
+}
+
+// データの取得
+$selectQuery = "SELECT * FROM students";
+$result = $mysqli->query($selectQuery);
+while ($row = $result->fetch_assoc()) {
+  echo "ID: " . $row['id'] . ", Name: " . $row['name'] . ", Age: " . $row['age'] . ", Major: " . $row['major'] . "\n";
 }
