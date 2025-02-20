@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS postLikes (
-  userID INT NOT NULL,
-  postID INT NOT NULL,
-  PRIMARY KEY (userID, postID),
-  FOREIGN KEY (userID) REFERENCES users(id),
-  FOREIGN KEY (postID) REFERENCES posts(id)
-)
