@@ -8,4 +8,5 @@ return [
   Programs\DBWipe::class,
   Programs\BookSearch::class,
   Programs\StateMigrate::class,
+  Programs\Seed::class,
 ];
