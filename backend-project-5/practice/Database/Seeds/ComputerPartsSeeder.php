@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeds;
+
 use Database\AbstractSeeder;
 
 class ComputerPartsSeeder extends AbstractSeeder

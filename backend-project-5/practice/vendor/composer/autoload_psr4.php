@@ -6,9 +6,11 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Programs\\' => array($baseDir . '/Commands/Programs'),
     'Migrations\\' => array($baseDir . '/Database/Migrations'),
     'Helpers\\' => array($baseDir . '/Helpers'),
+    'Faker\\' => array($vendorDir . '/fakerphp/faker/src/Faker'),
     'Exceptions\\' => array($baseDir . '/Exceptions'),
     'Database\\' => array($baseDir . '/Database'),
     'Commands\\' => array($baseDir . '/Commands'),
