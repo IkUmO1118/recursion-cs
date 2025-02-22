@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Programs\\' => array($baseDir . '/Commands/Programs'),
+    'Migrations\\' => array($baseDir . '/Database/Migrations'),
     'Helpers\\' => array($baseDir . '/Helpers'),
     'Exceptions\\' => array($baseDir . '/Exceptions'),
     'Database\\' => array($baseDir . '/Database'),

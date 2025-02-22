@@ -11,6 +11,10 @@ class ComposerStaticInit134a48ff07bef11e889d5ef1c681b5c7
         array (
             'Programs\\' => 9,
         ),
+        'M' => 
+        array (
+            'Migrations\\' => 11,
+        ),
         'H' => 
         array (
             'Helpers\\' => 8,
@@ -33,6 +37,10 @@ class ComposerStaticInit134a48ff07bef11e889d5ef1c681b5c7
         'Programs\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Commands/Programs',
+        ),
+        'Migrations\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Database/Migrations',
         ),
         'Helpers\\' => 
         array (
