@@ -73,7 +73,6 @@ class ComputerPartsSeeder extends AbstractSeeder
         'Ryzen 9 5900X',
         'CPU',
         'AMD',
-        // 不明な文字が挿入されているようです（例：）。必要に応じて削除してください。
         '100-000000061',
         '2020-11-05',
         'A high-performance 12-core processor.',
@@ -111,7 +110,6 @@ class ComputerPartsSeeder extends AbstractSeeder
         'A fast NVMe M.2 SSD with 500GB storage.',
         88,
         79.99,
-        // 不明な文字が挿入されているようです（例： ）。必要に応じて削除してください。
         0.02,
         5.7,
         0.08,
