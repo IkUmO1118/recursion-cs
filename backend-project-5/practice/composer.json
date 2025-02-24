@@ -4,12 +4,13 @@
   },
   "autoload": {
     "psr-4": {
-      "Database\\": "Database",
       "Exceptions\\": "Exceptions",
       "Helpers\\": "Helpers",
       "Commands\\": "Commands",
       "Programs\\": "Commands/Programs",
-      "Migrations\\": "Database/Migrations"
+      "Database\\": "Database",
+      "Migrations\\": "Database/Migrations",
+      "Seeds\\": "Database/Seeds"
     }
   }
 }
