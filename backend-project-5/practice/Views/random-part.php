@@ -1,6 +1,9 @@
 <?php
 
+require __DIR__ . './../vendor/autoload.php';
+
 use Database\MySQLWrapper;
+
 
 // URLクエリパラメータを通じてIDが提供されたかどうかをチェックします。
 $id = $_GET['id'] ?? null;
