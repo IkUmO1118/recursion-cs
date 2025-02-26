@@ -11,6 +11,8 @@
       "Database\\": "Database",
       "Migrations\\": "Database/Migrations",
       "Seeds\\": "Database/Seeds",
+      "Response\\": "Response",
+      "Render\\": "Response/Render",
       "Views\\": "Views"
     }
   }
