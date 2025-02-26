@@ -10,7 +10,8 @@
       "Programs\\": "Commands/Programs",
       "Database\\": "Database",
       "Migrations\\": "Database/Migrations",
-      "Seeds\\": "Database/Seeds"
+      "Seeds\\": "Database/Seeds",
+      "Views\\": "Views"
     }
   }
 }
