@@ -5,7 +5,7 @@ namespace Helpers;
 use Database\MySQLWrapper;
 use Exception;
 
-class DatbaseHelper
+class DatabaseHelper
 {
   public static function getRandomComputerPart(): array
   {
