@@ -1,10 +1,12 @@
 <?php
 
+namespace Routing;
+
 use Helpers\DatabaseHelper;
 use Helpers\ValidationHelper;
 use Response\HTTPRenderer;
 use Response\Render\HTMLRenderer;
-use Response\Render\JOSNRenderer;
+use Response\Render\JSONRenderer;
 
 return [
   'random/part' => function (): HTTPRenderer {
@@ -22,12 +24,12 @@ return [
 
   'api/random/part' => function (): HTTPRenderer {
     $part = DatabaseHelper::getRandomComputerPart();
-    return new JOSNRenderer(['part' => $part]);
+    return new JSONRenderer(['part' => $part]);
   },
 
   'api/parts' => function (): HTTPRenderer {
     $id = ValidationHelper::integer($_GET['id'] ?? null);
     $part = DatabaseHelper::getComputerPartById($id);
-    return new JOSNRenderer(['part' => $part]);
+    return new JSONRenderer(['part' => $part]);
   }
 ];

@@ -19,6 +19,12 @@ class ComposerStaticInit134a48ff07bef11e889d5ef1c681b5c7
         array (
             'Seeds\\' => 6,
         ),
+        'R' => 
+        array (
+            'Routing\\' => 8,
+            'Response\\' => 9,
+            'Render\\' => 7,
+        ),
         'P' => 
         array (
             'Psr\\Container\\' => 14,
@@ -58,6 +64,18 @@ class ComposerStaticInit134a48ff07bef11e889d5ef1c681b5c7
         'Seeds\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Database/Seeds',
+        ),
+        'Routing\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Routing',
+        ),
+        'Response\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Response',
+        ),
+        'Render\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Response/Render',
         ),
         'Psr\\Container\\' => 
         array (

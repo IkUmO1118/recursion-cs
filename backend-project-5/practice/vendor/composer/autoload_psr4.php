@@ -8,6 +8,9 @@ $baseDir = dirname($vendorDir);
 return array(
     'Views\\' => array($baseDir . '/Views'),
     'Seeds\\' => array($baseDir . '/Database/Seeds'),
+    'Routing\\' => array($baseDir . '/Routing'),
+    'Response\\' => array($baseDir . '/Response'),
+    'Render\\' => array($baseDir . '/Response/Render'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Programs\\' => array($baseDir . '/Commands/Programs'),
     'Migrations\\' => array($baseDir . '/Database/Migrations'),

@@ -4,7 +4,7 @@ namespace Response\Render;
 
 use Response\HTTPRenderer;
 
-class JOSNRenderer implements HTTPRenderer
+class JSONRenderer implements HTTPRenderer
 {
   private array $data;
 
