@@ -12,4 +12,13 @@ class ValidationHelper
 
     return $value;
   }
+
+  public static function string(string $value)
+  {
+    $value = filter_var($value, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+
+    if ($value === false) throw new \InvalidArgumentException('The provided value is not a valid string.');
+
+    return $value;
+  }
 }

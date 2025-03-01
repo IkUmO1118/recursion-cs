@@ -31,5 +31,14 @@ return [
     $id = ValidationHelper::integer($_GET['id'] ?? null);
     $part = DatabaseHelper::getComputerPartById($id);
     return new JSONRenderer(['part' => $part]);
-  }
+  },
+
+  "types" => function (): HTTPRenderer {
+    $type = ValidationHelper::string($_GET['type']  ?? null);
+    $page = ValidationHelper::integer($_GET['page'] ?? 1);
+    $perpage = ValidationHelper::integer($_GET['perpage'] ?? 10);
+
+    $partsList = DatabaseHelper::getComputerPartByType($type, $page, $perpage);
+    return new JSONRenderer(['parts' => $partsList]);
+  },
 ];
