@@ -4,6 +4,8 @@ spl_autoload_extensions(".php");
 spl_autoload_register();
 require __DIR__ . '/vendor/autoload.php';
 
+header('Access-Control-Allow-Origin: *');
+
 $DEBUG = true;
 
 $routes = include('Routing/routes.php');
