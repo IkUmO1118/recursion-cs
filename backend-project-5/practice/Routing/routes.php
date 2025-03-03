@@ -48,5 +48,13 @@ return [
 
     $parts = DatabaseHelper::getNewestComputerParts($page, $perpage);
     return new JSONRenderer(["part" => $parts]);
+  },
+
+  "parts/performance" => function (): HTTPRenderer {
+    $order = ValidationHelper::string($_GET['order'] ?? "asc");
+    $type = ValidationHelper::string($_GET['type']  ?? null);
+
+    $parts = DatabaseHelper::getComputerPartByPerformance($type, $order);
+    return new JSONRenderer(["part" => $parts]);
   }
 ];

@@ -70,4 +70,23 @@ class DatabaseHelper
 
     return $parts;
   }
+
+  public static function getComputerPartByPerformance(string $type, string $order): array
+  {
+    $db = new MySQLWrapper();
+
+    $order = strtoupper($order) === 'ASC' ? 'ASC' : 'DESC';
+
+    $stmt = $db->prepare("SELECT * FROM computer_parts WHERE type = ? ORDER BY performance_score $order LIMIT ?");
+    $limit = 50;
+    $stmt->bind_param('si', $type, $limit);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $parts = $result->fetch_all(MYSQLI_ASSOC);
+
+    if (!$parts) throw new Exception("Could not find a single part in database");
+
+    return $parts;
+  }
 }
