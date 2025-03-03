@@ -2,6 +2,7 @@
 
 namespace Database\Seeds;
 
+use Faker\Factory;
 use Database\AbstractSeeder;
 
 class ComputerPartsSeeder extends AbstractSeeder
@@ -68,71 +69,31 @@ class ComputerPartsSeeder extends AbstractSeeder
 
   public function createRowData(): array
   {
-    return [
-      [
-        'Ryzen 9 5900X',
-        'CPU',
-        'AMD',
-        '100-000000061',
-        '2020-11-05',
-        'A high-performance 12-core processor.',
-        90,
-        549.99,
-        0.05,
-        105.0,
-        0.04,
-        0.04,
-        0.005,
-        5
-      ],
-      [
-        'GeForce RTX 3080',
-        'GPU',
-        'NVIDIA',
-        '10G-P5-3897-KR',
-        '2020-09-17',
-        'A powerful gaming GPU with ray tracing support.',
-        93,
-        699.99,
-        0.04,
-        320.0,
-        0.285,
-        0.112,
-        0.05,
-        5
-      ],
-      [
-        'Samsung 970 EVO SSD',
-        'SSD',
-        'Samsung',
-        'MZ-V7E500BW',
-        '2018-04-24',
-        'A fast NVMe M.2 SSD with 500GB storage.',
-        88,
-        79.99,
-        0.02,
-        5.7,
-        0.08,
-        0.022,
-        0.0023,
-        5
-      ],
-      [
-        'Corsair Vengeance LPX 16GB',
-        'RAM',
-        'Corsair',
-        'CMK16GX4M2B3200C16',
-        '2015-08-10',
-        'A DDR4 memory kit operating at 3200MHz.',
-        85,
-        69.99,
-        0.03,
-        1.2,
-        0.137,
-        0.03,
-        0.007,
-        7
-      ]
-    ];
+    $faker = Factory::create();
+    $computerParts = [];
+
+    // Determine a random number of entries between 0 and 1000
+    $numberOfEntries = $faker->numberBetween(0, 1000);
+
+    for ($i = 0; $i < $numberOfEntries; $i++) {
+      $computerParts[] = [
+        $faker->word, // name
+        $faker->randomElement(['CPU', 'GPU', 'SSD', 'RAM', 'Motherboard', 'Power Supply', 'Cooling Fan']), // type
+        $faker->company, // brand
+        strtoupper($faker->bothify('??###')), // model_number
+        $faker->date('Y-m-d'), // release_date
+        $faker->sentence, // description
+        $faker->numberBetween(1, 100), // performance_score
+        $faker->randomFloat(2, 50, 2000), // market_price
+        $faker->randomFloat(2, 0.01, 0.10), // rsm
+        $faker->randomFloat(2, 50, 500), // power_consumptionw
+        $faker->randomFloat(3, 0.05, 0.50), // lengthm
+        $faker->randomFloat(3, 0.05, 0.50), // widthm
+        $faker->randomFloat(3, 0.01, 0.10), // heightm
+        $faker->numberBetween(1, 10), // lifespan
+      ];
+    }
+
+    return $computerParts;
   }
 }
