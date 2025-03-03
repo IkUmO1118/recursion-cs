@@ -41,4 +41,12 @@ return [
     $partsList = DatabaseHelper::getComputerPartByType($type, $page, $perpage);
     return new JSONRenderer(['parts' => $partsList]);
   },
+
+  "parts/newest" => function (): HTTPRenderer {
+    $page = ValidationHelper::integer($_GET['page'] ?? 1);
+    $perpage = ValidationHelper::integer($_GET['perpage'] ?? 10);
+
+    $parts = DatabaseHelper::getNewestComputerParts($page, $perpage);
+    return new JSONRenderer(["part" => $parts]);
+  }
 ];
