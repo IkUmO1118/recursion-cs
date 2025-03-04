@@ -42,6 +42,11 @@ return [
     return new JSONRenderer(['parts' => $partsList]);
   },
 
+  "random/computer" => function (): HTTPRenderer {
+    $computer = DatabaseHelper::getRandomComputer();
+    return new JSONRenderer(["computer" => $computer]);
+  },
+
   "parts/newest" => function (): HTTPRenderer {
     $page = ValidationHelper::integer($_GET['page'] ?? 1);
     $perpage = ValidationHelper::integer($_GET['perpage'] ?? 10);

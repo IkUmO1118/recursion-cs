@@ -54,6 +54,104 @@ class DatabaseHelper
     return $parts;
   }
 
+  public static function getRandomComputer(): array
+  {
+    $db = new MySQLWrapper();
+
+    $stmt = $db->prepare("SELECT
+      (SELECT JSON_OBJECT(
+          'id', id,
+          'name', name,
+          'market_price', market_price,
+          'model_number', model_number,
+          'brand', brand
+        )
+        FROM computer_parts
+        WHERE type = 'CPU'
+        ORDER BY RAND()
+        LIMIT 1) AS cpu,
+      (SELECT JSON_OBJECT(
+          'id', id,
+          'name', name,
+          'market_price', market_price,
+          'model_number', model_number,
+          'brand', brand
+        )
+        FROM computer_parts
+        WHERE type = 'GPU'
+        ORDER BY RAND()
+        LIMIT 1) AS gpu,
+      (SELECT JSON_OBJECT(
+          'id', id,
+          'name', name,
+          'market_price', market_price,
+          'model_number', model_number,
+          'brand', brand
+        )
+        FROM computer_parts
+        WHERE type = 'SSD'
+        ORDER BY RAND()
+        LIMIT 1) AS ssd,
+      (SELECT JSON_OBJECT(
+          'id', id,
+          'name', name,
+          'market_price', market_price,
+          'model_number', model_number,
+          'brand', brand
+        )
+        FROM computer_parts
+        WHERE type = 'RAM'
+        ORDER BY RAND()
+        LIMIT 1) AS ram,
+      (SELECT JSON_OBJECT(
+          'id', id,
+          'name', name,
+          'market_price', market_price,
+          'model_number', model_number,
+          'brand', brand
+        )
+        FROM computer_parts
+        WHERE type = 'Motherboard'
+        ORDER BY RAND()
+        LIMIT 1) AS motherboard,
+      (SELECT JSON_OBJECT(
+          'id', id,
+          'name', name,
+          'market_price', market_price,
+          'model_number', model_number,
+          'brand', brand
+        )
+        FROM computer_parts
+        WHERE type = 'Power Supply'
+        ORDER BY RAND()
+        LIMIT 1) AS power_supply,
+      (SELECT JSON_OBJECT(
+          'id', id,
+          'name', name,
+          'market_price', market_price,
+          'model_number', model_number,
+          'brand', brand
+        )
+        FROM computer_parts
+        WHERE type = 'Cooling Fan'
+        ORDER BY RAND()
+        LIMIT 1) AS cooling_fan;");
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $computer = $result->fetch_assoc();
+    // $computer = $result->fetch_all(MYSQLI_ASSOC);
+
+    if (!$computer) throw new Exception("Could not find a single part in database");
+
+    // 各部品の JSON 文字列を連想配列に変換する
+    foreach ($computer as $partType => $jsonStr) {
+      $computer[$partType] = json_decode($jsonStr, true);
+    }
+
+    return $computer;
+  }
+
   public static function getNewestComputerParts(int $page, int $perpage): array
   {
     $db = new MySQLWrapper();
