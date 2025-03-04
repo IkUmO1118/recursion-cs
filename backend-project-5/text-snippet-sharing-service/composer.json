@@ -1,0 +1,20 @@
+{
+  "require": {
+    "fakerphp/faker": "^1.24"
+  },
+  "autoload": {
+    "psr-4": {
+      "Commands\\": "Commands",
+      "Programs\\": "Commands/Programs",
+      "Database\\": "Database",
+      "Migrations\\": "Database/Migrations",
+      "Seeds\\": "Database/Seeds",
+      "Exceptions\\": "Exceptions",
+      "Helpers\\": "Helpers",
+      "Response\\": "Response",
+      "Render\\": "Response/Render",
+      "Routing\\": "Routing",
+      "Views\\": "Views"
+    }
+  }
+}
