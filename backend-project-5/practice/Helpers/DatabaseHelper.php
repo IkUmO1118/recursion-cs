@@ -47,7 +47,7 @@ class DatabaseHelper
     $stmt->execute();
 
     $result = $stmt->get_result();
-    $parts = $result->fetch_all(MYSQLI_ASSOC);
+    $parts = $result->fetch_all(\MYSQLI_ASSOC);
 
     if (!$parts) throw new Exception("Could not find a single part in database");
 
@@ -163,7 +163,7 @@ class DatabaseHelper
     $stmt->execute();
 
     $result = $stmt->get_result();
-    $parts = $result->fetch_all(MYSQLI_ASSOC);
+    $parts = $result->fetch_all(\MYSQLI_ASSOC);
     if (!$parts) throw new Exception("Could not find a single part in database");
 
     return $parts;
@@ -181,7 +181,7 @@ class DatabaseHelper
     $stmt->execute();
 
     $result = $stmt->get_result();
-    $parts = $result->fetch_all(MYSQLI_ASSOC);
+    $parts = $result->fetch_all(\MYSQLI_ASSOC);
 
     if (!$parts) throw new Exception("Could not find a single part in database");
 
