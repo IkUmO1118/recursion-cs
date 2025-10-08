@@ -30,13 +30,14 @@
         <p class="date" id="date"></p>
         <div class="icons">
           <button class="btn-outline" id="clear-btn">Clear</button>
-          <select class="language-select" id="format">
+          <select class="select" id="format">
             <option value="javascript">JavaScript</option>
-            <option value="typescript">TypeScript</option>
-            <option value="html">HTML</option>
-            <option value="css">CSS</option>
-            <option value="json">JSON</option>
-            <option value="python">Python</option>
+          </select>
+          <select class="select" id="duration">
+            <option value="10m" selected>10 Minutes</option>
+            <option value="1h">1 Hour</option>
+            <option value="1d">1 Day</option>
+            <option value="never">Never</option>
           </select>
           <button class="btn-primary" id="post-btn">Create New Paste</button>
         </div>

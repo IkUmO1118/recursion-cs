@@ -174,7 +174,7 @@ body {
   width: 100%;
 }
 
-.language-select {
+.select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -190,25 +190,25 @@ body {
   transition: all 0.2s ease;
 }
 
-.language-select:hover {
+.select:hover {
   background-color: #ebebeb;
   border-color: #a3a3a3;
 }
 
-.language-select:focus {
+.select:focus {
   outline: none;
   border-color: #262626;
   box-shadow: 0 0 0 2px rgba(38, 38, 38, 0.2);
 }
 
-.language-select {
+.select {
   background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='12' width='12' xmlns='http://www.w3.org/2000/svg'><path d='M2 4l4 4 4-4z'/></svg>");
   background-repeat: no-repeat;
   background-position: right 0.6rem center;
   background-size: 0.8rem;
 }
 
-.language-select option {
+.select option {
   background-color: #ffffff;
   color: #262626;
   font-size: 0.8rem;
@@ -216,7 +216,7 @@ body {
   font-weight: 500;
 }
 
-.language-select option:hover {
+.select option:hover {
   background-color: #262626;
   color: #ffffff;
 }
