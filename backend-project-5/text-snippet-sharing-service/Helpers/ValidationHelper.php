@@ -21,4 +21,11 @@ class ValidationHelper
 
     return $value;
   }
+
+  public static function getValidatedSnippetFromRequest($snippet)
+  {
+    if ($snippet === null) throw new \InvalidArgumentException('The "snippet" parameter is required.');
+
+    return self::string($snippet);
+  }
 }

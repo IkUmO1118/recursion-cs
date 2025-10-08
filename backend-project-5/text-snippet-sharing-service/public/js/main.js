@@ -1,6 +1,7 @@
 const previewContentEl = document.getElementById('content');
 const clearBtn = document.getElementById('clear-btn');
 const languageSelect = document.getElementById('format');
+const durationSelect = document.getElementById('duration');
 const postBtn = document.getElementById('post-btn');
 const modal = document.getElementById('snippet-modal');
 const urlInput = document.getElementById('snippet-url');
@@ -35,9 +36,10 @@ require(['vs/editor/editor.main'], function () {
   postBtn.addEventListener('click', async () => {
     const snippet = editor.getValue();
     const lang = languageSelect.value;
+    const duration = durationSelect.value;
 
     try {
-      await post(snippet, lang);
+      await post(snippet, lang, duration);
       openModal('https://snippet.19mod.com/snippet/12345');
       editor.setValue('');
     } catch (error) {
@@ -48,14 +50,14 @@ require(['vs/editor/editor.main'], function () {
   });
 });
 
-async function post(snippet, lang) {
+async function post(snippet, lang, duration) {
   try {
     const res = await fetch('http://127.0.0.1:8000/api/snippet', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ type, format, text }),
+      body: JSON.stringify({ snippet, lang, duration }),
     });
 
     console.log(res);
