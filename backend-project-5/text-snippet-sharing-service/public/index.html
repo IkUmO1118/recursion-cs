@@ -8,11 +8,26 @@
   </head>
   <body>
     <div class="container">
-      <header>Text Snippet Sharing Services</header>
-      <main></main>
-      <footer></footer>
+      <header class="header">
+        <p class="date" id="date"></p>
+        <div class="icons">
+          <button class="btn-outline" id="clear-btn">Clear</button>
+          <select class="language-select" id="format">
+            <option value="javascript">JavaScript</option>
+            <option value="typescript">TypeScript</option>
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="json">JSON</option>
+            <option value="python">Python</option>
+          </select>
+          <button class="btn-primary" id="post-btn">Create New Paste</button>
+        </div>
+      </header>
+      <main>
+        <div class="editor" id="editor"></div>
+      </main>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
-    <script src="src/js/main.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
