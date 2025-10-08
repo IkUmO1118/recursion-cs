@@ -1,6 +1,10 @@
 const previewContentEl = document.getElementById('content');
 const clearBtn = document.getElementById('clear-btn');
 const languageSelect = document.getElementById('format');
+const postBtn = document.getElementById('post-btn');
+const modal = document.getElementById('snippet-modal');
+const urlInput = document.getElementById('snippet-url');
+const copyBtn = document.getElementById('copy-url-btn');
 
 require.config({
   paths: {
@@ -26,11 +30,27 @@ require(['vs/editor/editor.main'], function () {
   clearBtn.addEventListener('click', () => {
     editor.setValue('');
   });
+
+  // --- Post ボタン ---
+  postBtn.addEventListener('click', async () => {
+    const snippet = editor.getValue();
+    const lang = languageSelect.value;
+
+    try {
+      await post(snippet, lang);
+      openModal('https://snippet.19mod.com/snippet/12345');
+      editor.setValue('');
+    } catch (error) {
+      alert('Failed to post snippet. Please try again.');
+      // 仮のURL
+      openModal('https://snippet.19mod.com/snippet/12345');
+    }
+  });
 });
 
-async function post(type, text, format) {
+async function post(snippet, lang) {
   try {
-    const res = await fetch('./src/encode.php', {
+    const res = await fetch('http://127.0.0.1:8000/api/snippet', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -38,27 +58,37 @@ async function post(type, text, format) {
       body: JSON.stringify({ type, format, text }),
     });
 
+    console.log(res);
+
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
-    }
-    if (type === 'download') {
-      const blob = await res.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `userCode.${format}`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    } else {
-      return await res.text();
     }
   } catch (error) {
     console.error('Error:', error);
     throw error;
   }
 }
+
+// モーダルを開く関数
+function openModal(url) {
+  urlInput.value = url;
+  modal.style.display = 'flex';
+}
+
+// コピーしてモーダルを閉じる
+copyBtn.addEventListener('click', () => {
+  navigator.clipboard.writeText(urlInput.value).then(() => {
+    alert('URLをコピーしました！');
+    modal.style.display = 'none';
+  });
+});
+
+// 背景クリックで閉じる
+modal.addEventListener('click', (e) => {
+  if (e.target.id === 'snippet-modal') {
+    e.currentTarget.style.display = 'none';
+  }
+});
 
 function displayOptions() {
   const allLangs = monaco.languages.getLanguages();

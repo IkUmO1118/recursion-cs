@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="style/styles.css" />
   </head>
   <body>
+    <div class="modal" id="snippet-modal">
+      <div class="modal_content">
+        <h3>スニペットを保存しました 🎉</h3>
+        <p class="modal-text">
+          以下のURLをコピーして、他の人とスニペットを共有できます。
+        </p>
+        <div class="modal-url-box">
+          <input
+            type="text"
+            id="snippet-url"
+            readonly
+            value="https://example.com/snippet/12345"
+          />
+          <button id="copy-url-btn">コピー</button>
+        </div>
+        <p class="modal-note">URLをコピーすると、このウィンドウは閉じます。</p>
+      </div>
+    </div>
     <div class="container">
       <header class="header">
         <p class="date" id="date"></p>
