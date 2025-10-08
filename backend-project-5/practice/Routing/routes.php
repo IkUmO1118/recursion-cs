@@ -35,7 +35,7 @@ return [
 
   "types" => function (): HTTPRenderer {
     $type = ValidationHelper::string($_GET['type']  ?? null);
-    $page = ValidationHelper::integer($_GET['page'] ?? 1);
+    $page = ValidationHelper::intege  r($_GET['page'] ?? 1);
     $perpage = ValidationHelper::integer($_GET['perpage'] ?? 10);
 
     $partsList = DatabaseHelper::getComputerPartByType($type, $page, $perpage);
