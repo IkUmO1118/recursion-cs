@@ -15,12 +15,15 @@ class ValidationHelper
 
   public static function string(string $value)
   {
-    $value = filter_var($value, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+    $value = htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 
-    if ($value === false) throw new \InvalidArgumentException('The provided value is not a valid string.');
+    if (trim($value) === '') {
+      throw new \InvalidArgumentException('The provided value is not a valid string.');
+    }
 
     return $value;
   }
+
 
   public static function getValidatedSnippetFromRequest($snippet)
   {

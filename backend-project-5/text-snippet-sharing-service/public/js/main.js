@@ -7,6 +7,8 @@ const modal = document.getElementById('snippet-modal');
 const urlInput = document.getElementById('snippet-url');
 const copyBtn = document.getElementById('copy-url-btn');
 
+const baseUrl = 'http://localhost:8000/';
+
 require.config({
   paths: {
     vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs',
@@ -39,20 +41,18 @@ require(['vs/editor/editor.main'], function () {
     const duration = durationSelect.value;
 
     try {
-      await post(snippet, lang, duration);
-      openModal('https://snippet.19mod.com/snippet/12345');
+      const url = await post(snippet, lang, duration);
+      openModal(url);
       editor.setValue('');
     } catch (error) {
       alert('Failed to post snippet. Please try again.');
-      // 仮のURL
-      openModal('https://snippet.19mod.com/snippet/12345');
     }
   });
 });
 
 async function post(snippet, lang, duration) {
   try {
-    const res = await fetch('http://127.0.0.1:8000/api/snippet', {
+    const res = await fetch(`${baseUrl}api/snippet`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -60,11 +60,13 @@ async function post(snippet, lang, duration) {
       body: JSON.stringify({ snippet, lang, duration }),
     });
 
-    console.log(res);
+    const data = await res.json();
 
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
+
+    return data.url;
   } catch (error) {
     console.error('Error:', error);
     throw error;
