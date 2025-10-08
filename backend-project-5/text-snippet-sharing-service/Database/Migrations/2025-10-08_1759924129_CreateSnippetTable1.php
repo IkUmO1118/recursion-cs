@@ -27,6 +27,8 @@ class CreateSnippetTable1 implements SchemaMigration
   public function down(): array
   {
     // ロールバックロジックを追加してください
-    return [];
+    return [
+      "DROP TABLE IF EXISTS snippets;"
+    ];
   }
 }
