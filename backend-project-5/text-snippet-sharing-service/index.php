@@ -20,9 +20,20 @@ $routes = include('Routing/routes.php');
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $path = ltrim($path, "/");
 
-if (isset($routes[$path])) {
-  $renderer = $routes[$path]();
+$matched = false;
+$renderer = null;
 
+// --- 正規表現マッチ対応追加 ---
+foreach ($routes as $pattern => $callback) {
+  if (preg_match("#^{$pattern}$#", $path, $matches)) {
+    $matched = true;
+    // マッチしたグループ（例: snippet ID）を引数として渡す
+    $renderer = $callback(...array_slice($matches, 1));
+    break;
+  }
+}
+
+if ($matched && $renderer) {
   try {
     foreach ($renderer->getFields() as $name => $value) {
       $sanitized_value = htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
@@ -31,15 +42,15 @@ if (isset($routes[$path])) {
         header("{$name}: {$sanitized_value}");
       } else {
         http_response_code(500);
-        if ($DEBUG) print("Failed settingheader - original: '$value', sanitized: ''$sanitized_value");
+        if ($DEBUG) print("Failed setting header - original: '$value', sanitized: '$sanitized_value'");
         exit;
       }
-
-      print($renderer->getContent());
     }
+
+    print($renderer->getContent());
   } catch (Exception $e) {
     http_response_code(500);
-    print("Intenal error, please contact the admin.<br>");
+    print("Internal error, please contact the admin.<br>");
     if ($DEBUG) print($e->getMessage());
   }
 } else {
