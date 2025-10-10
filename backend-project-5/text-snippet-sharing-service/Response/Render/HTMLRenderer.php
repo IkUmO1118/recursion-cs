@@ -33,20 +33,7 @@ class HTMLRenderer implements HTTPRenderer
     ob_start();
     extract($this->data);
     require $viewPath;
-    return $this->getHeader() . ob_get_clean() . $this->getFooter();
-  }
-
-  private function getHeader(): string
-  {
-    ob_start();
-    require $this->getViewPath("layout/header");
-    return ob_get_clean();
-  }
-  private function getFooter(): string
-  {
-    ob_start();
-    require $this->getViewPath("layout/footer");
-    return ob_get_clean();
+    return  ob_get_clean();
   }
 
   private function getViewPath(string $path): string
