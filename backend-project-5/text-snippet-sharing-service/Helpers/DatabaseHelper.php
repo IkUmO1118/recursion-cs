@@ -34,4 +34,23 @@ class DatabaseHelper
 
     return $url;
   }
+
+  public static function getSnippetById(string $uniqueId): ?array
+  {
+    $db = new MySQLWrapper();
+
+    $url = rtrim((new Settings())->env('APP_URL'), '/') . '/snippet/' . $uniqueId;
+
+    $stmt = $db->prepare("SELECT * FROM snippets WHERE url = ? AND (expired_at IS NULL OR expired_at > NOW())");
+
+    $stmt->bind_param("s", $url);
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $snippetData = $result->fetch_assoc();
+
+    $stmt->close();
+
+    return $snippetData ?: null;
+  }
 }
